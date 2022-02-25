@@ -1,7 +1,6 @@
 package com.moensun.weixin.mp
 
 import com.moensun.weixin.commons.WeiXinConfig
-import com.moensun.weixin.miniprogram.AccessTokenRequest
 import com.moensun.weixin.miniprogram.MiniProgramClient
 import org.junit.jupiter.api.Test
 
@@ -11,8 +10,7 @@ class MiniProgramClientTests {
     @Test
     fun accessTokenTest() {
         val client = miniProgramClient();
-        val req = AccessTokenRequest()
-     val res =   client.getAccessToken(req)
+        val res = client.getAccessToken()
         print(res)
     }
 
