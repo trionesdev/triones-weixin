@@ -11,6 +11,7 @@
     <modules>
         <module>weixin-commons</module>
         <module>weixin-miniprogram</module>
+        <module>weixin-offiaccount</module>
     </modules>
 
     <properties>
@@ -57,6 +58,13 @@
                 <artifactId>fastjson</artifactId>
                 <version>1.2.79</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.moensun.weixin</groupId>
+                <artifactId>weixin-commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

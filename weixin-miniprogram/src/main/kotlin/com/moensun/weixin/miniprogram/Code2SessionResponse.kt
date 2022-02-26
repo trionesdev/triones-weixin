@@ -1,9 +1,9 @@
 package com.moensun.weixin.miniprogram
 
 import com.alibaba.fastjson.annotation.JSONField
-import com.moensun.weixin.commons.BaseResponse
+import com.moensun.weixin.commons.http.BaseResponse
 
-class Code2SessionResponse : BaseResponse {
+class Code2SessionResponse : BaseResponse() {
     @JSONField(name = "openid")
     var openId: String? = null
 

@@ -2,6 +2,7 @@ package com.moensun.weixin.commons.http
 
 import okhttp3.Headers
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
@@ -56,7 +57,7 @@ class HttpRequest(
         }
 
         open fun jsonBody(body:String): Builder = apply {
-            this.body = body.toRequestBody(MediaType.parse("application/json;charset=UTF-8"))
+            this.body = body.toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
         }
 
         open fun build(): HttpRequest {

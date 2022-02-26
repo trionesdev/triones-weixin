@@ -1,7 +1,6 @@
-package com.moensun.weixin.miniprogram
+package com.moensun.weixin.commons.http
 
 import com.alibaba.fastjson.annotation.JSONField
-import com.moensun.weixin.commons.http.BaseResponse
 
 class AccessTokenResponse : BaseResponse() {
     @JSONField(name = "access_token")

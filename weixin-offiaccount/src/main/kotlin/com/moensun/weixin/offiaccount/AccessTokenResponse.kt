@@ -1,4 +1,4 @@
-package com.moensun.weixin.miniprogram
+package com.moensun.weixin.offiaccount
 
 import com.alibaba.fastjson.annotation.JSONField
 import com.moensun.weixin.commons.http.BaseResponse
