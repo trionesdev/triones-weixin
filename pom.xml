@@ -65,7 +65,11 @@
                 <artifactId>weixin-commons</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.moensun.weixin</groupId>
+                <artifactId>weixin-miniprogram</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
