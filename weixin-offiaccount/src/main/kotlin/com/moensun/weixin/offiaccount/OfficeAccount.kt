@@ -1,6 +1,7 @@
 package com.moensun.weixin.offiaccount
 
 import com.moensun.weixin.commons.WeiXinConfig
+import com.moensun.weixin.commons.http.BaseResponse
 import com.moensun.weixin.commons.http.HttpRequest
 import com.moensun.weixin.commons.http.WeiXinHttpClient
 import okhttp3.OkHttpClient
@@ -23,6 +24,17 @@ class OfficeAccount : WeiXinHttpClient {
     }
     //endregion
 
-
+    //region 发送模板消息
+    /**
+     * https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#发送模板消息
+     */
+    fun sendTemplateMessage(request: SendTemplateMessageRequest):BaseResponse{
+        val httpRequest = HttpRequest.Builder().post()
+            .url("cgi-bin/message/template/send?access_token=${request.accessToken}")
+            .jsonBody(request)
+            .build()
+        return doExecute(httpRequest)
+    }
+    //endregion
 
 }

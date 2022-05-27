@@ -14,6 +14,13 @@ class OfficeAccountTests {
         assertNull(res.errorCode)
     }
 
+    @Test
+    fun sendTemplateMessage(){
+        val oa = officeAccount()
+        val res = oa.getAccessToken()
+        val req = SendTemplateMessageRequest()
+        oa.sendTemplateMessage(req)
+    }
 
     private fun officeAccount(): OfficeAccount {
         val weiXinConfig = WeiXinConfig()
@@ -21,4 +28,5 @@ class OfficeAccountTests {
         weiXinConfig.secret = "c2ca264b9f232ce1e70533c5492caa78"
         return OfficeAccount(weiXinConfig)
     }
+
 }
