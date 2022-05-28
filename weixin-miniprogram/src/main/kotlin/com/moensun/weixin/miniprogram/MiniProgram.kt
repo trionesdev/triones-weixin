@@ -1,13 +1,13 @@
 package com.moensun.weixin.miniprogram
 
-import com.alibaba.fastjson.JSON
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.moensun.weixin.commons.WeiXin
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.HttpRequest
-import com.moensun.weixin.commons.http.WeiXinHttpClient
 import okhttp3.OkHttpClient
 import org.apache.commons.codec.digest.DigestUtils
 
-class MiniProgram : WeiXinHttpClient {
+class MiniProgram : WeiXin {
 
     constructor(weiXinConfig: WeiXinConfig) : super(weiXinConfig)
 
@@ -35,7 +35,7 @@ class MiniProgram : WeiXinHttpClient {
         body["encrypted_msg_hash"] = DigestUtils.sha1Hex(checkEncryptedDataRequest.encryptedMsg)
         val request = HttpRequest.Builder().post()
             .url("wxa/business/checkencryptedmsg?access_token=${accessToken(checkEncryptedDataRequest.accessToken)}")
-            .jsonBody(JSON.toJSONString(body))
+            .jsonBody(ObjectMapper().writeValueAsString(body))
             .build()
         return doExecute(request)
     }

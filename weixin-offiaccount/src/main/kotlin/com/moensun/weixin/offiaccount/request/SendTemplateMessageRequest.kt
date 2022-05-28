@@ -1,7 +1,6 @@
-package com.moensun.weixin.offiaccount.message
+package com.moensun.weixin.offiaccount.request
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.moensun.weixin.offiaccount.BaseRequest
 
 class SendTemplateMessageRequest : BaseRequest() {
     @JsonProperty(value = "touser")

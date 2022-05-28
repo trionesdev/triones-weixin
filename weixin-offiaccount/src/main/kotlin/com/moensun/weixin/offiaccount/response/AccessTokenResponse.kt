@@ -1,4 +1,4 @@
-package com.moensun.weixin.miniprogram
+package com.moensun.weixin.offiaccount.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.moensun.weixin.commons.http.BaseResponse

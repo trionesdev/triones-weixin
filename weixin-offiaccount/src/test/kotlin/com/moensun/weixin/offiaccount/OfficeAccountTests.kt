@@ -2,7 +2,7 @@ package com.moensun.weixin.offiaccount
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.moensun.weixin.commons.WeiXinConfig
-import com.moensun.weixin.offiaccount.message.SendTemplateMessageRequest
+import com.moensun.weixin.offiaccount.request.SendTemplateMessageRequest
 import org.junit.jupiter.api.Test
 import kotlin.test.assertNull
 

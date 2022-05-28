@@ -1,12 +1,13 @@
 package com.moensun.weixin.commons.oauth
 
+import com.moensun.weixin.commons.WeiXin
 import com.moensun.weixin.commons.http.BaseResponse
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.HttpRequest
 import com.moensun.weixin.commons.http.WeiXinHttpClient
 import okhttp3.OkHttpClient
 
-open class WeiXinOAuth : WeiXinHttpClient {
+open class WeiXinOAuth : WeiXin {
     constructor(weiXinConfig: WeiXinConfig) : super(weiXinConfig)
 
     constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient) : super(weiXinConfig, httpClient)

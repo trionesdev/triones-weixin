@@ -1,15 +1,15 @@
 package com.moensun.weixin.miniprogram
 
-import com.alibaba.fastjson.annotation.JSONField
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.moensun.weixin.commons.http.BaseResponse
 
 class Code2SessionResponse : BaseResponse() {
-    @JSONField(name = "openid")
+    @JsonProperty(value = "openid")
     var openId: String? = null
 
-    @JSONField(name = "session_key")
+    @JsonProperty(value = "session_key")
     var sessionKey: String? = null
 
-    @JSONField(name = "unionid")
+    @JsonProperty(value = "unionid")
     var unionId: String? = null
 }

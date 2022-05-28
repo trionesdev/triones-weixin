@@ -1,16 +1,19 @@
 package com.moensun.weixin.offiaccount
 
+import com.moensun.weixin.commons.WeiXin
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.BaseResponse
 import com.moensun.weixin.commons.http.HttpRequest
-import com.moensun.weixin.commons.http.WeiXinHttpClient
-import com.moensun.weixin.offiaccount.message.SendTemplateMessageRequest
+import com.moensun.weixin.offiaccount.request.BaseUserInfoRequest
+import com.moensun.weixin.offiaccount.request.SendTemplateMessageRequest
+import com.moensun.weixin.offiaccount.response.BaseUserInfoResponse
 import okhttp3.OkHttpClient
 
-class OfficeAccount : WeiXinHttpClient {
-    constructor(weiXinConfig: WeiXinConfig) : super(weiXinConfig)
+class OfficeAccount : WeiXin {
 
-    constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient) : super(weiXinConfig, httpClient)
+    constructor(weiXinConfig: WeiXinConfig) : this(weiXinConfig, null)
+
+    constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) : super(weiXinConfig, httpClient)
 
 
     //region 用户管理
@@ -25,11 +28,12 @@ class OfficeAccount : WeiXinHttpClient {
     }
     //endregion
 
+    // ----------------------------基础消息能力----------------------------
     //region 发送模板消息
     /**
      * https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#发送模板消息
      */
-    fun sendTemplateMessage(request: SendTemplateMessageRequest):BaseResponse{
+    fun sendTemplateMessage(request: SendTemplateMessageRequest): BaseResponse {
         val httpRequest = HttpRequest.Builder().post()
             .url("cgi-bin/message/template/send?access_token=${request.accessToken}")
             .jsonBody(request)
@@ -37,5 +41,7 @@ class OfficeAccount : WeiXinHttpClient {
         return doExecute(httpRequest)
     }
     //endregion
+    // ----------------------------基础消息能力----------------------------
+
 
 }

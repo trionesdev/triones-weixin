@@ -1,10 +1,10 @@
 package com.moensun.weixin.commons.http
 
-import com.alibaba.fastjson.annotation.JSONField
+import com.fasterxml.jackson.annotation.JsonProperty
 
 open class BaseResponse {
-    @JSONField(name = "errcode")
+    @JsonProperty(value = "errcode")
     var errorCode:Long? = null
-    @JSONField(name = "errmsg")
+    @JsonProperty(value = "errmsg")
     var errorMsg:String? = null
 }

@@ -1,4 +1,4 @@
-package com.moensun.weixin.offiaccount
+package com.moensun.weixin.offiaccount.request
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 
