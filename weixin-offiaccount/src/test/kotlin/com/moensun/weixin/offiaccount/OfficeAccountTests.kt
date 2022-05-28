@@ -1,6 +1,8 @@
 package com.moensun.weixin.offiaccount
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.moensun.weixin.commons.WeiXinConfig
+import com.moensun.weixin.offiaccount.message.SendTemplateMessageRequest
 import org.junit.jupiter.api.Test
 import kotlin.test.assertNull
 
@@ -15,11 +17,17 @@ class OfficeAccountTests {
     }
 
     @Test
-    fun sendTemplateMessage(){
+    fun sendTemplateMessage() {
         val oa = officeAccount()
         val res = oa.getAccessToken()
-        val req = SendTemplateMessageRequest()
-        oa.sendTemplateMessage(req)
+        val req = SendTemplateMessageRequest().apply {
+            accessToken = res.accessToken
+            templateId = "O82xLO6vucU2MIySEzXgETtxSpXZYF75dqt2eZQCdMI"
+            toUser = "ofSHFjroAmrv-CSGkmsRPcnEpp9Y"
+            data = mutableMapOf("first" to SendTemplateMessageRequest.ParamValue(value = "100"))
+        }
+        val resSend = oa.sendTemplateMessage(req)
+        print(ObjectMapper().writeValueAsString(resSend))
     }
 
     private fun officeAccount(): OfficeAccount {

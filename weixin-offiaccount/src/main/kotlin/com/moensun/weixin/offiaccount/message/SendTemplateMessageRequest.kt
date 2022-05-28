@@ -1,19 +1,19 @@
-package com.moensun.weixin.offiaccount
+package com.moensun.weixin.offiaccount.message
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.moensun.weixin.offiaccount.BaseRequest
 
-data class SendTemplateMessageRequest(
+class SendTemplateMessageRequest : BaseRequest() {
     @JsonProperty(value = "touser")
-    val toUser: String? = null,
+    var toUser: String? = null
+
     @JsonProperty(value = "template_id")
-    val templateId: String? = null,
-    val url: String? = null,
+    var templateId: String? = null
+    val url: String? = null
 
     @JsonProperty(value = "miniprogram")
-    val miniProgram: MiniProgram? = null,
-    val data: Map<String, ParamValue>? = null
-) : BaseRequest(){
-
+    val miniProgram: MiniProgram? = null
+    var data: Map<String, ParamValue>? = null
 
     data class MiniProgram(
         @JsonProperty(value = "appid")

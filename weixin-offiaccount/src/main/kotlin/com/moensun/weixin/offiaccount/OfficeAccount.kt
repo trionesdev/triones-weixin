@@ -4,6 +4,7 @@ import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.BaseResponse
 import com.moensun.weixin.commons.http.HttpRequest
 import com.moensun.weixin.commons.http.WeiXinHttpClient
+import com.moensun.weixin.offiaccount.message.SendTemplateMessageRequest
 import okhttp3.OkHttpClient
 
 class OfficeAccount : WeiXinHttpClient {
