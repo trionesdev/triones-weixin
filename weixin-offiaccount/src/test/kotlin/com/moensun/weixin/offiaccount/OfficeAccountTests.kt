@@ -3,6 +3,7 @@ package com.moensun.weixin.offiaccount
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.offiaccount.request.SendTemplateMessageRequest
+import com.moensun.weixin.offiaccount.request.UserListRequest
 import org.junit.jupiter.api.Test
 import kotlin.test.assertNull
 
@@ -17,7 +18,7 @@ class OfficeAccountTests {
     }
 
     @Test
-    fun sendTemplateMessage() {
+    fun sendTemplateMessage_test() {
         val oa = officeAccount()
         val res = oa.getAccessToken()
         val req = SendTemplateMessageRequest().apply {
@@ -28,6 +29,16 @@ class OfficeAccountTests {
         }
         val resSend = oa.sendTemplateMessage(req)
         print(ObjectMapper().writeValueAsString(resSend))
+    }
+
+    @Test
+    fun getUserList_test() {
+        val oa = officeAccount()
+        val res = oa.getAccessToken()
+        val result = oa.getUserList(UserListRequest().apply {
+            accessToken = res.accessToken
+        })
+        print(ObjectMapper().writeValueAsString(result))
     }
 
     private fun officeAccount(): OfficeAccount {

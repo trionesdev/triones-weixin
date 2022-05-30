@@ -6,7 +6,9 @@ import com.moensun.weixin.commons.http.BaseResponse
 import com.moensun.weixin.commons.http.HttpRequest
 import com.moensun.weixin.offiaccount.request.BaseUserInfoRequest
 import com.moensun.weixin.offiaccount.request.SendTemplateMessageRequest
+import com.moensun.weixin.offiaccount.request.UserListRequest
 import com.moensun.weixin.offiaccount.response.BaseUserInfoResponse
+import com.moensun.weixin.offiaccount.response.UserListResponse
 import com.moensun.weixin.offiaccount.response.WebAccessTokenResponse
 import okhttp3.OkHttpClient
 
@@ -48,7 +50,19 @@ class OfficeAccount : WeiXin {
 
 
     //-----------------------------用户管理----------------------------
-    //region 获取用户基本信息(UnionID机制)
+    //region 用户管理/获取用户列表
+    /**
+     * https://developers.weixin.qq.com/doc/offiaccount/User_Management/Getting_a_User_List.html
+     */
+    fun getUserList(req: UserListRequest): UserListResponse {
+        val httpRequest = HttpRequest.Builder().get()
+            .url("cgi-bin/user/get?access_token=${req.accessToken}&next_openid=${req.nextOpenId?:""}")
+            .build()
+        return doExecute(httpRequest)
+    }
+    //endregion
+
+    //region 用户管理/获取用户基本信息(UnionID机制)
     /**
      * https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId
      */
