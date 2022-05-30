@@ -4,11 +4,11 @@ import com.moensun.weixin.commons.WeiXin
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.BaseResponse
 import com.moensun.weixin.commons.http.HttpRequest
-import com.moensun.weixin.offiaccount.request.BaseUserInfoRequest
+import com.moensun.weixin.offiaccount.request.GetBaseUserInfoRequest
 import com.moensun.weixin.offiaccount.request.SendTemplateMessageRequest
-import com.moensun.weixin.offiaccount.request.UserListRequest
-import com.moensun.weixin.offiaccount.response.BaseUserInfoResponse
-import com.moensun.weixin.offiaccount.response.UserListResponse
+import com.moensun.weixin.offiaccount.request.GetUserListRequest
+import com.moensun.weixin.offiaccount.response.GetBaseUserInfoResponse
+import com.moensun.weixin.offiaccount.response.GetUserListResponse
 import com.moensun.weixin.offiaccount.response.WebAccessTokenResponse
 import okhttp3.OkHttpClient
 
@@ -54,9 +54,9 @@ class OfficeAccount : WeiXin {
     /**
      * https://developers.weixin.qq.com/doc/offiaccount/User_Management/Getting_a_User_List.html
      */
-    fun getUserList(req: UserListRequest): UserListResponse {
+    fun getUserList(req: GetUserListRequest): GetUserListResponse {
         val httpRequest = HttpRequest.Builder().get()
-            .url("cgi-bin/user/get?access_token=${req.accessToken}&next_openid=${req.nextOpenId?:""}")
+            .url("cgi-bin/user/get?access_token=${req.accessToken}&next_openid=${req.nextOpenId ?: ""}")
             .build()
         return doExecute(httpRequest)
     }
@@ -66,9 +66,9 @@ class OfficeAccount : WeiXin {
     /**
      * https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId
      */
-    fun getUserBasicInformation(baseUserInfoRequest: BaseUserInfoRequest): BaseUserInfoResponse {
+    fun getUserBasicInformation(getBaseUserInfoRequest: GetBaseUserInfoRequest): GetBaseUserInfoResponse {
         val httpRequest = HttpRequest.Builder().get()
-            .url("cgi-bin/user/info?access_token=${accessToken(baseUserInfoRequest.accessToken)}&openid=${baseUserInfoRequest.openId}&lang=${baseUserInfoRequest.lang}")
+            .url("cgi-bin/user/info?access_token=${accessToken(getBaseUserInfoRequest.accessToken)}&openid=${getBaseUserInfoRequest.openId}&lang=${getBaseUserInfoRequest.lang}")
             .build()
         return doExecute(httpRequest)
     }

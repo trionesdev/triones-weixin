@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.moensun.weixin.commons.http.BaseResponse
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-class UserListResponse : BaseResponse() {
+class GetUserListResponse : BaseResponse() {
     var total: Long? = null
     var count: Long? = null
     var data: Data? = null

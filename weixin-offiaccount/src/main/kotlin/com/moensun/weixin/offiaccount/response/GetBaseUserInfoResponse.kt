@@ -1,14 +1,23 @@
 package com.moensun.weixin.offiaccount.response
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.moensun.weixin.commons.http.BaseResponse
 
-class BaseUserInfoResponse : BaseResponse() {
+@JsonIgnoreProperties(ignoreUnknown = true)
+class GetBaseUserInfoResponse : BaseResponse() {
     var subscribe: String? = null
 
     @JsonProperty(value = "openid")
     var openId: String? = null
+    var nickname: String? = null
+    var sex:Int? = null
     var language: String? = null
+    var city:String? = null
+    var province:String? = null
+    var country:String? = null
+    @JsonProperty(value = "headimgurl")
+    var headImgUrl:String? = null
 
     @JsonProperty(value = "subscribe_time")
     var subscribeTime: Long? = null

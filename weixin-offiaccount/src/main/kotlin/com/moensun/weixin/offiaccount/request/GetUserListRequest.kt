@@ -1,5 +1,5 @@
 package com.moensun.weixin.offiaccount.request
 
-class UserListRequest : BaseRequest() {
+class GetUserListRequest : BaseRequest() {
     var nextOpenId: String? = null
 }
