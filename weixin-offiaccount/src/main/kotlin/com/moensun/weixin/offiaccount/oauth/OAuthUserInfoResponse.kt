@@ -1,7 +1,7 @@
-package com.moensun.weixin.commons.oauth
+package com.moensun.weixin.offiaccount.oauth
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.moensun.weixin.commons.http.BaseResponse
+import com.moensun.weixin.commons.res.BaseResponse
 
 class OAuthUserInfoResponse : BaseResponse() {
     @JsonProperty(value = "openid")

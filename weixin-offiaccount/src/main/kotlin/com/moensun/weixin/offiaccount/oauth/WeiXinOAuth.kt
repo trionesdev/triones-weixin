@@ -1,19 +1,21 @@
-package com.moensun.weixin.commons.oauth
+package com.moensun.weixin.offiaccount.oauth
 
 import com.moensun.weixin.commons.WeiXin
-import com.moensun.weixin.commons.http.BaseResponse
+import com.moensun.weixin.commons.res.BaseResponse
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.HttpRequest
-import com.moensun.weixin.commons.http.WeiXinHttpClient
 import okhttp3.OkHttpClient
 
+/**
+ * 微信网页授权
+ */
 open class WeiXinOAuth : WeiXin {
     constructor(weiXinConfig: WeiXinConfig) : super(weiXinConfig)
 
-    constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient) : super(weiXinConfig, httpClient)
+    constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) : super(weiXinConfig, httpClient)
 
 
-    //region 微信网易开发
+    //region 微信网页开发
     /**
      * 通过code换取网页授权access_token
      * https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html#1
@@ -22,7 +24,9 @@ open class WeiXinOAuth : WeiXin {
         val httpRequest = HttpRequest.Builder().get()
             .url("sns/oauth2/access_token?appid=${weiXinConfig.appId}&secret=${weiXinConfig.secret}&code=${request.code}&grant_type=authorization_code")
             .build()
-        return doExecute(httpRequest)
+        val result: OAuthAccessTokenResponse = doExecute(httpRequest)
+        weiXinConfig.weiXinCache?.setOAuthAccessToken(result.accessToken!!)
+        return result
     }
 
     /**
@@ -61,12 +65,12 @@ open class WeiXinOAuth : WeiXin {
     //endregion
 
 
-    protected fun oauthAccessToken(accessToken: String?): String? {
+    private fun oauthAccessToken(accessToken: String?): String? {
         return accessToken?.let {
             return it
         } ?: let {
             return weiXinConfig.weiXinCache?.let {
-                return it.oauthAccessToken()
+                return it.getOAuthAccessToken()
             }
         }
     }

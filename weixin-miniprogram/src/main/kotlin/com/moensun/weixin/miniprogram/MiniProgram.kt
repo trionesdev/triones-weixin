@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.moensun.weixin.commons.WeiXin
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.HttpRequest
+import com.moensun.weixin.miniprogram.request.CheckEncryptedDataRequest
+import com.moensun.weixin.miniprogram.response.CheckEncryptedDataResponse
+import com.moensun.weixin.miniprogram.response.Code2SessionResponse
 import okhttp3.OkHttpClient
 import org.apache.commons.codec.digest.DigestUtils
 

@@ -1,4 +1,4 @@
-package com.moensun.weixin.commons.oauth
+package com.moensun.weixin.offiaccount.oauth
 
 class OAuthUserInfoRequest {
     var accessToken: String? = null

@@ -1,4 +1,4 @@
-package com.moensun.weixin.miniprogram
+package com.moensun.weixin.miniprogram.request
 
 class CheckEncryptedDataRequest {
     var accessToken:String? = null

@@ -1,7 +1,7 @@
 package com.moensun.weixin.commons
 
-import com.moensun.weixin.commons.http.AccessTokenResponse
-import com.moensun.weixin.commons.http.BaseResponse
+import com.moensun.weixin.commons.res.AccessTokenResponse
+import com.moensun.weixin.commons.res.BaseResponse
 import com.moensun.weixin.commons.http.HttpRequest
 import com.moensun.weixin.commons.http.WeiXinHttpClient
 import okhttp3.OkHttpClient
@@ -44,7 +44,7 @@ abstract class WeiXin {
             return it
         } ?: let {
             return weiXinConfig.weiXinCache?.let {
-                return it.accessToken()
+                return it.getAccessToken()
             } ?: let {
                 return getAccessToken().accessToken
             }

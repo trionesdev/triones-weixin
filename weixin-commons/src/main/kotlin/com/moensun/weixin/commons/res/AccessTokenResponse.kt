@@ -1,7 +1,7 @@
-package com.moensun.weixin.miniprogram
+package com.moensun.weixin.commons.res
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.moensun.weixin.commons.http.BaseResponse
+
 
 class AccessTokenResponse : BaseResponse() {
     @JsonProperty(value = "access_token")

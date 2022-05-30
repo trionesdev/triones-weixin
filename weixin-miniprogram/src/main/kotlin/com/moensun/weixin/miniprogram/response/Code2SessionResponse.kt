@@ -1,7 +1,7 @@
-package com.moensun.weixin.miniprogram
+package com.moensun.weixin.miniprogram.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.moensun.weixin.commons.http.BaseResponse
+import com.moensun.weixin.commons.res.BaseResponse
 
 class Code2SessionResponse : BaseResponse() {
     @JsonProperty(value = "openid")

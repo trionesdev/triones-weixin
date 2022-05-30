@@ -1,4 +1,4 @@
-package com.moensun.weixin.commons.http
+package com.moensun.weixin.commons.res
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
