@@ -9,6 +9,7 @@ import com.moensun.weixin.offiaccount.request.GetUserListRequest
 import com.moensun.weixin.offiaccount.request.SendTemplateMessageRequest
 import com.moensun.weixin.offiaccount.response.GetBaseUserInfoResponse
 import com.moensun.weixin.offiaccount.response.GetUserListResponse
+import com.moensun.weixin.offiaccount.response.SendTemplateMessageResponse
 import okhttp3.OkHttpClient
 
 class OfficeAccount : WeiXinOAuth {
@@ -23,7 +24,7 @@ class OfficeAccount : WeiXinOAuth {
     /**
      * https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#发送模板消息
      */
-    fun sendTemplateMessage(request: SendTemplateMessageRequest): BaseResponse {
+    fun sendTemplateMessage(request: SendTemplateMessageRequest): SendTemplateMessageResponse {
         val httpRequest = HttpRequest.Builder().post()
             .url("cgi-bin/message/template/send?access_token=${accessToken(request.accessToken)}")
             .jsonBody(request)
