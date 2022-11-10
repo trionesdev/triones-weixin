@@ -5,8 +5,10 @@ import com.moensun.weixin.commons.WeiXin
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.HttpRequest
 import com.moensun.weixin.miniprogram.request.CheckEncryptedDataRequest
+import com.moensun.weixin.miniprogram.request.GetUserPhoneNumberRequest
 import com.moensun.weixin.miniprogram.response.CheckEncryptedDataResponse
 import com.moensun.weixin.miniprogram.response.Code2SessionResponse
+import com.moensun.weixin.miniprogram.response.UserPhoneNumberResponse
 import okhttp3.OkHttpClient
 import org.apache.commons.codec.digest.DigestUtils
 
@@ -38,6 +40,19 @@ class MiniProgram : WeiXin {
         body["encrypted_msg_hash"] = DigestUtils.sha1Hex(checkEncryptedDataRequest.encryptedMsg)
         val request = HttpRequest.Builder().post()
             .url("wxa/business/checkencryptedmsg?access_token=${accessToken(checkEncryptedDataRequest.accessToken)}")
+            .jsonBody(ObjectMapper().writeValueAsString(body))
+            .build()
+        return doExecute(request)
+    }
+    //endregion
+
+
+    //region 获取手机号
+    fun getUserPhoneNumber(getUserPhoneNumberRequest: GetUserPhoneNumberRequest): UserPhoneNumberResponse {
+        val body = mutableMapOf<String, String?>()
+        body["code"] = getUserPhoneNumberRequest.code
+        val request = HttpRequest.Builder().post()
+            .url("wxa/business/getuserphonenumber?access_token=${accessToken(getUserPhoneNumberRequest.accessToken)}")
             .jsonBody(ObjectMapper().writeValueAsString(body))
             .build()
         return doExecute(request)
