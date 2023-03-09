@@ -25,7 +25,7 @@ open class WeiXinOAuth : WeiXin {
             .url("sns/oauth2/access_token?appid=${weiXinConfig.appId}&secret=${weiXinConfig.secret}&code=${request.code}&grant_type=authorization_code")
             .build()
         val result: OAuthAccessTokenResponse = doExecute(httpRequest)
-        weiXinConfig.weiXinCache?.setOAuthAccessToken(result.accessToken!!)
+        weiXinConfig.weiXinCache?.setOAuthAccessToken(weiXinConfig.appId, result.accessToken!!)
         return result
     }
 
@@ -70,7 +70,7 @@ open class WeiXinOAuth : WeiXin {
             return it
         } ?: let {
             return weiXinConfig.weiXinCache?.let {
-                return it.getOAuthAccessToken()
+                return it.getOAuthAccessToken(weiXinConfig.appId)
             }
         }
     }

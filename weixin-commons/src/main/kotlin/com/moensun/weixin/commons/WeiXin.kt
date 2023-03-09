@@ -10,9 +10,9 @@ abstract class WeiXin {
     var weiXinConfig: WeiXinConfig
     protected var wxHttpClient: WeiXinHttpClient
 
-    constructor(weiXinConfig: WeiXinConfig):this(weiXinConfig,null)
+    constructor(weiXinConfig: WeiXinConfig) : this(weiXinConfig, null)
 
-    constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?){
+    constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) {
         this.weiXinConfig = weiXinConfig
         wxHttpClient = WeiXinHttpClient(weiXinConfig, httpClient)
     }
@@ -44,7 +44,7 @@ abstract class WeiXin {
             return it
         } ?: let {
             return weiXinConfig.weiXinCache?.let {
-                return it.getAccessToken()
+                return it.getAccessToken(weiXinConfig.appId)
             } ?: let {
                 return getAccessToken().accessToken
             }
