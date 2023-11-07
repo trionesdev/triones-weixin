@@ -1,5 +1,6 @@
 package com.moensun.weixin.mp
 
+import com.alibaba.fastjson2.JSON
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.miniprogram.MiniProgram
 import org.junit.jupiter.api.Test
@@ -11,7 +12,7 @@ class MiniProgramTests {
     fun accessTokenTest() {
         val client = miniProgramClient();
         val res = client.getAccessToken()
-        print(res)
+        print(JSON.toJSONString(res))
     }
 
 
