@@ -1,4 +1,4 @@
-package com.moensun.weixin.miniprogram.request
+package com.moensun.weixin.miniprogram.model
 
 class GetUserPhoneNumberRequest {
     var accessToken: String? = null

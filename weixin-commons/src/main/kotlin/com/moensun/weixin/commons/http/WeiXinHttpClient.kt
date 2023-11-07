@@ -2,7 +2,7 @@ package com.moensun.weixin.commons.http
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.moensun.weixin.commons.WeiXinConfig
-import com.moensun.weixin.commons.res.BaseResponse
+import com.moensun.weixin.commons.model.BaseResponse
 import okhttp3.OkHttpClient
 import okhttp3.Request
 

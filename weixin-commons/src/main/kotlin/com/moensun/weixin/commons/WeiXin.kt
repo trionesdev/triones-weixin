@@ -1,7 +1,7 @@
 package com.moensun.weixin.commons
 
-import com.moensun.weixin.commons.res.AccessTokenResponse
-import com.moensun.weixin.commons.res.BaseResponse
+import com.moensun.weixin.commons.model.AccessTokenResponse
+import com.moensun.weixin.commons.model.BaseResponse
 import com.moensun.weixin.commons.http.HttpRequest
 import com.moensun.weixin.commons.http.WeiXinHttpClient
 import okhttp3.OkHttpClient

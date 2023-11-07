@@ -4,11 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.moensun.weixin.commons.WeiXin
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.HttpRequest
-import com.moensun.weixin.miniprogram.request.CheckEncryptedDataRequest
-import com.moensun.weixin.miniprogram.request.GetUserPhoneNumberRequest
-import com.moensun.weixin.miniprogram.response.CheckEncryptedDataResponse
-import com.moensun.weixin.miniprogram.response.Code2SessionResponse
-import com.moensun.weixin.miniprogram.response.UserPhoneNumberResponse
+import com.moensun.weixin.miniprogram.model.CheckEncryptedDataRequest
+import com.moensun.weixin.miniprogram.model.GetUserPhoneNumberRequest
+import com.moensun.weixin.miniprogram.model.CheckEncryptedDataResponse
+import com.moensun.weixin.miniprogram.model.Code2SessionResponse
+import com.moensun.weixin.miniprogram.model.UserPhoneNumberResponse
 import okhttp3.OkHttpClient
 import org.apache.commons.codec.digest.DigestUtils
 

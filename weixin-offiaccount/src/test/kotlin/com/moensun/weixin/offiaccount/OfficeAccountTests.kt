@@ -2,9 +2,9 @@ package com.moensun.weixin.offiaccount
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.moensun.weixin.commons.WeiXinConfig
-import com.moensun.weixin.offiaccount.request.GetBaseUserInfoRequest
-import com.moensun.weixin.offiaccount.request.SendTemplateMessageRequest
-import com.moensun.weixin.offiaccount.request.GetUserListRequest
+import com.moensun.weixin.offiaccount.model.GetBaseUserInfoRequest
+import com.moensun.weixin.offiaccount.model.SendTemplateMessageRequest
+import com.moensun.weixin.offiaccount.model.GetUserListRequest
 import org.junit.jupiter.api.Test
 import kotlin.test.assertNull
 

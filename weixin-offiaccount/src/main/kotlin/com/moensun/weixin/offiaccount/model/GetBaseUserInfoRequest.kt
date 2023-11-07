@@ -1,4 +1,4 @@
-package com.moensun.weixin.offiaccount.request
+package com.moensun.weixin.offiaccount.model
 
 class GetBaseUserInfoRequest :BaseRequest(){
     var openId: String? = null

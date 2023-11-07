@@ -1,4 +1,4 @@
-package com.moensun.weixin.offiaccount.request
+package com.moensun.weixin.offiaccount.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

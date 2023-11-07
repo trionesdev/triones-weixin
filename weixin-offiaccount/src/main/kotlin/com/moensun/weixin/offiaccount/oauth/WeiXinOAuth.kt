@@ -1,7 +1,7 @@
 package com.moensun.weixin.offiaccount.oauth
 
 import com.moensun.weixin.commons.WeiXin
-import com.moensun.weixin.commons.res.BaseResponse
+import com.moensun.weixin.commons.model.BaseResponse
 import com.moensun.weixin.commons.WeiXinConfig
 import com.moensun.weixin.commons.http.HttpRequest
 import okhttp3.OkHttpClient

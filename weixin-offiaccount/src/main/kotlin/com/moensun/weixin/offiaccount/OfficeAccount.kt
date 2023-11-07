@@ -1,15 +1,14 @@
 package com.moensun.weixin.offiaccount
 
 import com.moensun.weixin.commons.WeiXinConfig
-import com.moensun.weixin.commons.res.BaseResponse
 import com.moensun.weixin.commons.http.HttpRequest
 import com.moensun.weixin.offiaccount.oauth.WeiXinOAuth
-import com.moensun.weixin.offiaccount.request.GetBaseUserInfoRequest
-import com.moensun.weixin.offiaccount.request.GetUserListRequest
-import com.moensun.weixin.offiaccount.request.SendTemplateMessageRequest
-import com.moensun.weixin.offiaccount.response.GetBaseUserInfoResponse
-import com.moensun.weixin.offiaccount.response.GetUserListResponse
-import com.moensun.weixin.offiaccount.response.SendTemplateMessageResponse
+import com.moensun.weixin.offiaccount.model.GetBaseUserInfoRequest
+import com.moensun.weixin.offiaccount.model.GetUserListRequest
+import com.moensun.weixin.offiaccount.model.SendTemplateMessageRequest
+import com.moensun.weixin.offiaccount.model.GetBaseUserInfoResponse
+import com.moensun.weixin.offiaccount.model.GetUserListResponse
+import com.moensun.weixin.offiaccount.model.SendTemplateMessageResponse
 import okhttp3.OkHttpClient
 
 class OfficeAccount : WeiXinOAuth {
