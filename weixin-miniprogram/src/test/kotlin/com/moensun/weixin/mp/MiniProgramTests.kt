@@ -15,11 +15,17 @@ class MiniProgramTests {
         print(JSON.toJSONString(res))
     }
 
+    @Test
+    fun code2SessionTest() {
+        val client = miniProgramClient();
+        val res = client.code2Session("0a1d1UGa1LpepG0xT5Ja11czPD0d1UGG")
+        print(JSON.toJSONString(res))
+    }
 
     private fun miniProgramClient(): MiniProgram {
         val weiXinConfig = WeiXinConfig()
-        weiXinConfig.appId = "wx08b199625847bec1";
-        weiXinConfig.secret = "07d553878c1e8acdf349dade6923d428"
+        weiXinConfig.appId = "wx78791bd73b35a329";
+        weiXinConfig.secret = "396ce9f67483adbc2044b987c069c599"
         return MiniProgram(weiXinConfig)
     }
 }
