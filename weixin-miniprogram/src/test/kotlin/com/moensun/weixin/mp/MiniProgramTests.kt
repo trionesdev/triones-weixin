@@ -18,7 +18,7 @@ class MiniProgramTests {
     @Test
     fun code2SessionTest() {
         val client = miniProgramClient();
-        val res = client.code2Session("0a1d1UGa1LpepG0xT5Ja11czPD0d1UGG")
+        val res = client.code2Session("0b1DapGa17hsqG03o4Ia1mBkGn2DapGA")
         print(JSON.toJSONString(res))
     }
 
