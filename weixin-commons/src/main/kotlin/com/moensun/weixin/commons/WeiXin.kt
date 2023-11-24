@@ -6,7 +6,7 @@ import com.moensun.weixin.commons.http.HttpRequest
 import com.moensun.weixin.commons.http.WeiXinHttpClient
 import okhttp3.OkHttpClient
 
-abstract class WeiXin {
+abstract class WeiXin : WeXinTemplate {
     var weiXinConfig: WeiXinConfig
     protected var wxHttpClient: WeiXinHttpClient
 
@@ -17,7 +17,7 @@ abstract class WeiXin {
         wxHttpClient = WeiXinHttpClient(weiXinConfig, httpClient)
     }
 
-    fun appId(): String? {
+    override fun appId(): String? {
         return weiXinConfig.appId
     }
 
@@ -30,7 +30,7 @@ abstract class WeiXin {
      * 获取小程序全局唯一后台接口调用凭据
      * https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/access-token/auth.getAccessToken.html
      */
-    fun getAccessToken(): AccessTokenResponse {
+    override fun getAccessToken(): AccessTokenResponse {
         val request = HttpRequest.Builder().get()
             .url("cgi-bin/token?grant_type=client_credential&appid=${weiXinConfig.appId}&secret=${weiXinConfig.secret}")
             .build()

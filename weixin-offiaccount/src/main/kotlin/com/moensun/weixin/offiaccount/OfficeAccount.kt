@@ -11,7 +11,7 @@ import com.moensun.weixin.offiaccount.model.GetUserListResponse
 import com.moensun.weixin.offiaccount.model.SendTemplateMessageResponse
 import okhttp3.OkHttpClient
 
-class OfficeAccount : WeiXinOAuth {
+class OfficeAccount : WeiXinOAuth, WeiXinOfficeAccountTemplate {
 
     constructor(weiXinConfig: WeiXinConfig) : this(weiXinConfig, null)
 
@@ -23,7 +23,7 @@ class OfficeAccount : WeiXinOAuth {
     /**
      * https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#发送模板消息
      */
-    fun sendTemplateMessage(request: SendTemplateMessageRequest): SendTemplateMessageResponse {
+    override fun sendTemplateMessage(request: SendTemplateMessageRequest): SendTemplateMessageResponse {
         val httpRequest = HttpRequest.Builder().post()
             .url("cgi-bin/message/template/send?access_token=${accessToken(request.accessToken)}")
             .jsonBody(request)
@@ -39,7 +39,7 @@ class OfficeAccount : WeiXinOAuth {
     /**
      * https://developers.weixin.qq.com/doc/offiaccount/User_Management/Getting_a_User_List.html
      */
-    fun getUserList(req: GetUserListRequest): GetUserListResponse {
+    override fun getUserList(req: GetUserListRequest): GetUserListResponse {
         val httpRequest = HttpRequest.Builder().get()
             .url("cgi-bin/user/get?access_token=${accessToken(req.accessToken)}&next_openid=${req.nextOpenId ?: ""}")
             .build()
@@ -51,7 +51,7 @@ class OfficeAccount : WeiXinOAuth {
     /**
      * https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId
      */
-    fun getUserBasicInformation(req: GetBaseUserInfoRequest): GetBaseUserInfoResponse {
+    override fun getUserBasicInformation(req: GetBaseUserInfoRequest): GetBaseUserInfoResponse {
         val httpRequest = HttpRequest.Builder().get()
             .url("cgi-bin/user/info?access_token=${accessToken(accessToken(req.accessToken))}&openid=${req.openId}&lang=${req.lang}")
             .build()

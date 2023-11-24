@@ -12,7 +12,7 @@ import com.moensun.weixin.miniprogram.model.UserPhoneNumberResponse
 import okhttp3.OkHttpClient
 import org.apache.commons.codec.digest.DigestUtils
 
-class MiniProgram : WeiXin {
+class MiniProgram : WeiXin, WeiXinMiniProgramTemplate {
 
     constructor(weiXinConfig: WeiXinConfig) : super(weiXinConfig)
 
@@ -23,7 +23,7 @@ class MiniProgram : WeiXin {
      * 登录凭证校验
      * https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html
      */
-    fun code2Session(code: String): Code2SessionResponse {
+    override fun code2Session(code: String): Code2SessionResponse {
         val request = HttpRequest.Builder().get()
             .url("sns/jscode2session?appid=${weiXinConfig.appId}&secret=${weiXinConfig.secret}&js_code=${code}&grant_type=authorization_code")
             .build()
@@ -35,7 +35,7 @@ class MiniProgram : WeiXin {
     /**
      * https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/user-info/auth.checkEncryptedData.html
      */
-    fun checkEncryptedData(checkEncryptedDataRequest: CheckEncryptedDataRequest): CheckEncryptedDataResponse {
+    override fun checkEncryptedData(checkEncryptedDataRequest: CheckEncryptedDataRequest): CheckEncryptedDataResponse {
         val body = mutableMapOf<String, String>()
         body["encrypted_msg_hash"] = DigestUtils.sha1Hex(checkEncryptedDataRequest.encryptedMsg)
         val request = HttpRequest.Builder().post()
@@ -48,7 +48,7 @@ class MiniProgram : WeiXin {
 
 
     //region 获取手机号
-    fun getUserPhoneNumber(getUserPhoneNumberRequest: GetUserPhoneNumberRequest): UserPhoneNumberResponse {
+    override fun getUserPhoneNumber(getUserPhoneNumberRequest: GetUserPhoneNumberRequest): UserPhoneNumberResponse {
         val body = mutableMapOf<String, String?>()
         body["code"] = getUserPhoneNumberRequest.code
         val request = HttpRequest.Builder().post()
