@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.moensun.weixin</groupId>
-    <artifactId>moensun-weixin</artifactId>
+    <artifactId>triones-weixin</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>MS:WeiXin</name>
+    <name>Triones:WeiXin</name>
     <modules>
         <module>weixin-commons</module>
         <module>weixin-miniprogram</module>
