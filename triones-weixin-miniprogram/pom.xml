@@ -8,8 +8,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <name>Triones:WeiXin:OfficeAccount</name>
-    <artifactId>weixin-offiaccount</artifactId>
+    <name>Triones:WeiXin:MiniProgram</name>
+    <artifactId>triones-weixin-miniprogram</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>com.moensun.weixin</groupId>
-            <artifactId>weixin-commons</artifactId>
+            <artifactId>triones-weixin-commons</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -62,7 +62,7 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-<!--                                <source>src/main/java</source>-->
+                                <source>src/main/java</source>
                                 <source>src/main/kotlin</source>
                             </sourceDirs>
                         </configuration>
@@ -94,5 +94,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>
