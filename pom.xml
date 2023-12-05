@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.moensun.weixin</groupId>
+    <groupId>com.trionesdev.weixin</groupId>
     <artifactId>triones-weixin</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -99,17 +99,17 @@
             </dependency>
 
             <dependency>
-                <groupId>com.moensun.weixin</groupId>
+                <groupId>com.trionesdev.weixin</groupId>
                 <artifactId>triones-weixin-commons</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.moensun.weixin</groupId>
+                <groupId>com.trionesdev.weixin</groupId>
                 <artifactId>triones-weixin-miniprogram</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.moensun.weixin</groupId>
+                <groupId>com.trionesdev.weixin</groupId>
                 <artifactId>triones-weixin-offiaccount</artifactId>
                 <version>${project.version}</version>
             </dependency>
