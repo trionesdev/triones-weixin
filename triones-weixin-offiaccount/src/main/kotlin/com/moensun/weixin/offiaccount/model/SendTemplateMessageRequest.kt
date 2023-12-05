@@ -11,18 +11,18 @@ class SendTemplateMessageRequest : BaseRequest() {
     val url: String? = null
 
     @JsonProperty(value = "miniprogram")
-    val miniProgram: MiniProgram? = null
+    var miniProgram: MiniProgram? = null
     var data: Map<String, ParamValue>? = null
 
     data class MiniProgram(
         @JsonProperty(value = "appid")
-        val appId: String? = null,
+        var appId: String? = null,
         @JsonProperty(value = "pagepath")
-        val pagePath: String? = null
+        var pagePath: String? = null
     )
 
     data class ParamValue(
-        val value: String? = null,
-        val color: String? = null
+        var value: String? = null,
+        var color: String? = null
     )
 }
