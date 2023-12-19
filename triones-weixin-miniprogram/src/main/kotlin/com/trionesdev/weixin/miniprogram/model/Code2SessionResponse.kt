@@ -1,7 +1,7 @@
 package com.trionesdev.weixin.miniprogram.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.trionesdev.weixin.commons.model.BaseResponse
+import com.trionesdev.weixin.base.model.BaseResponse
 
 class Code2SessionResponse : BaseResponse() {
     @JsonProperty(value = "openid")

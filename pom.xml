@@ -10,9 +10,10 @@
     <version>1.0-SNAPSHOT</version>
     <name>Triones:WeiXin</name>
     <modules>
-        <module>triones-weixin-commons</module>
+        <module>triones-weixin-base</module>
         <module>triones-weixin-miniprogram</module>
         <module>triones-weixin-offiaccount</module>
+        <module>triones-weixin-oplatform</module>
     </modules>
 
     <properties>
@@ -100,7 +101,7 @@
 
             <dependency>
                 <groupId>com.trionesdev.weixin</groupId>
-                <artifactId>triones-weixin-commons</artifactId>
+                <artifactId>triones-weixin-base</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

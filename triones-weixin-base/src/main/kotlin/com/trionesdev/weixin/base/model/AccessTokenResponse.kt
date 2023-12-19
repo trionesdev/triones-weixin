@@ -1,8 +1,10 @@
-package com.trionesdev.weixin.miniprogram.model
+package com.trionesdev.weixin.base.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.trionesdev.weixin.base.model.BaseResponse
 
+/**
+ * 接口调用凭证
+ */
 class AccessTokenResponse : BaseResponse() {
     @JsonProperty(value = "access_token")
     var accessToken: String? = null

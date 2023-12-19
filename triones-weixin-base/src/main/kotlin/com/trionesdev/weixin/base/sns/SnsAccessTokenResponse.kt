@@ -1,14 +1,14 @@
-package com.trionesdev.weixin.offiaccount.model
+package com.trionesdev.weixin.base.sns
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.trionesdev.weixin.base.model.BaseResponse
 
-class WebAccessTokenResponse : BaseResponse() {
+class SnsAccessTokenResponse : BaseResponse() {
     @JsonProperty(value = "access_token")
     var accessToken: String? = null
 
     @JsonProperty(value = "expires_in")
-    var expiresIn: Int? = null
+    var expiresIn: Long? = null
 
     @JsonProperty(value = "refresh_token")
     var refreshToken: String? = null

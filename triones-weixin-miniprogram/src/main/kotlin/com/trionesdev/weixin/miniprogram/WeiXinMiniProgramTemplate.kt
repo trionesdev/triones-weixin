@@ -1,6 +1,6 @@
 package com.trionesdev.weixin.miniprogram
 
-import com.trionesdev.weixin.commons.WeXinTemplate
+import com.trionesdev.weixin.base.WeXinTemplate
 import com.trionesdev.weixin.miniprogram.model.*
 
 interface WeiXinMiniProgramTemplate:WeXinTemplate {

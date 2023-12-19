@@ -25,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>com.trionesdev.weixin</groupId>
-            <artifactId>triones-weixin-commons</artifactId>
+            <artifactId>triones-weixin-base</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
