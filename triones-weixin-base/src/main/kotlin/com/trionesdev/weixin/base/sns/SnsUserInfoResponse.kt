@@ -1,8 +1,10 @@
 package com.trionesdev.weixin.base.sns
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.trionesdev.weixin.base.model.BaseResponse
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 class SnsUserInfoResponse : BaseResponse() {
     @JsonProperty(value = "openid")
     val openId: String? = null
