@@ -39,7 +39,7 @@ abstract class WeiXin : WeXinTemplate {
     //endregion
 
 
-    protected fun accessToken(accessToken: String?): String? {
+    fun accessToken(accessToken: String?): String? {
         return accessToken?.let {
             return it
         } ?: let {

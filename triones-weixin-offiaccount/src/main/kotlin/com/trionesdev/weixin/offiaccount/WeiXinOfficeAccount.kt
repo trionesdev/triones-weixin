@@ -1,22 +1,32 @@
 package com.trionesdev.weixin.offiaccount
 
+import com.trionesdev.weixin.base.WeiXin
 import com.trionesdev.weixin.base.WeiXinConfig
 import com.trionesdev.weixin.base.http.HttpRequest
 import com.trionesdev.weixin.base.sns.WeiXinSns
-import com.trionesdev.weixin.offiaccount.model.GetBaseUserInfoRequest
-import com.trionesdev.weixin.offiaccount.model.GetUserListRequest
-import com.trionesdev.weixin.offiaccount.model.SendTemplateMessageRequest
-import com.trionesdev.weixin.offiaccount.model.GetBaseUserInfoResponse
-import com.trionesdev.weixin.offiaccount.model.GetUserListResponse
-import com.trionesdev.weixin.offiaccount.model.SendTemplateMessageResponse
+import com.trionesdev.weixin.offiaccount.jsapi.WeiXinOfficeAccountJsapi
+import com.trionesdev.weixin.offiaccount.model.*
 import okhttp3.OkHttpClient
 
-class WeiXinOfficeAccount : WeiXinSns, WeiXinOfficeAccountTemplate {
+class WeiXinOfficeAccount : WeiXin, WeiXinOfficeAccountTemplate {
+    private var weiXinSns: WeiXinSns
+
+    private var weiXinJsapi: WeiXinOfficeAccountJsapi
 
     constructor(weiXinConfig: WeiXinConfig) : this(weiXinConfig, null)
 
-    constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) : super(weiXinConfig, httpClient)
+    constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) : super(weiXinConfig, httpClient) {
+        weiXinSns = WeiXinSns(weiXinConfig, wxHttpClient.httpClient)
+        weiXinJsapi = WeiXinOfficeAccountJsapi(weiXinConfig, wxHttpClient.httpClient)
+    }
 
+    override fun getSnsInstance():WeiXinSns{
+        return this.weiXinSns
+    }
+
+    override fun getJsapiInstance(): WeiXinOfficeAccountJsapi {
+        return this.weiXinJsapi
+    }
 
     // ----------------------------基础消息能力----------------------------
     //region 发送模板消息

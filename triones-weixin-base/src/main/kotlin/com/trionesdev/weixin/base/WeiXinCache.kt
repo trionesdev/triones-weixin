@@ -16,4 +16,11 @@ interface WeiXinCache {
     fun getSnsAccessToken(appId: String?): String?
 
     fun setSnsAccessToken(appId: String?, token: String)
+
+    /**
+     * 获取公众号用于调用微信JS接口的临时票据
+     */
+    fun getJsapiTicket(appId: String?):String?
+
+    fun setJsapiTicket(appId: String?, ticket: String)
 }
