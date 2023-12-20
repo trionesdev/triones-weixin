@@ -14,6 +14,8 @@
         <module>triones-weixin-miniprogram</module>
         <module>triones-weixin-offiaccount</module>
         <module>triones-weixin-oplatform</module>
+        <module>triones-weixin-app</module>
+        <module>triones-weixin-web</module>
     </modules>
 
     <properties>
@@ -112,6 +114,16 @@
             <dependency>
                 <groupId>com.trionesdev.weixin</groupId>
                 <artifactId>triones-weixin-offiaccount</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.trionesdev.weixin</groupId>
+                <artifactId>triones-weixin-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.trionesdev.weixin</groupId>
+                <artifactId>triones-weixin-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
