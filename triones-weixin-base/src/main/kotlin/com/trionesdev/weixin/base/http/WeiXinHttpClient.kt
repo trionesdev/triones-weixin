@@ -11,17 +11,14 @@ class WeiXinHttpClient {
         const val BASE_URL: String = "https://api.weixin.qq.com/"
     }
 
-    var httpClient: OkHttpClient
+    var httpClient: OkHttpClient = OkHttpClient.Builder().build();
     var weiXinConfig: WeiXinConfig
 
-    constructor(weiXinConfig: WeiXinConfig) {
-        this.weiXinConfig = weiXinConfig
-        this.httpClient = OkHttpClient()
-    }
+    constructor(weiXinConfig: WeiXinConfig) : this(weiXinConfig, null)
 
     constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) {
         this.weiXinConfig = weiXinConfig
-        this.httpClient = httpClient ?: OkHttpClient()
+        httpClient?.let { t -> this.httpClient = t }
     }
 
     inline fun <reified R : BaseResponse?, A : HttpRequest?> doExecute(request: A): R {
