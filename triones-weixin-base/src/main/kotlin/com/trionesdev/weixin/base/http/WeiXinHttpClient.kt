@@ -5,6 +5,7 @@ import com.trionesdev.weixin.base.WeiXinConfig
 import com.trionesdev.weixin.base.model.BaseResponse
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
 
 class WeiXinHttpClient {
     companion object {
@@ -16,9 +17,13 @@ class WeiXinHttpClient {
 
     constructor(weiXinConfig: WeiXinConfig) : this(weiXinConfig, null)
 
-    constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) {
+    constructor(weiXinConfig: WeiXinConfig, client: OkHttpClient?) {
         this.weiXinConfig = weiXinConfig
-        httpClient?.let { t -> this.httpClient = t }
+        client?.let { t -> this.httpClient = t }
+        weiXinConfig.httpLogLevel?.let { levelIt ->
+            this.httpClient =
+                this.httpClient.newBuilder().addInterceptor(HttpLoggingInterceptor().apply { level = levelIt }).build()
+        }
     }
 
     inline fun <reified R : BaseResponse?, A : HttpRequest?> doExecute(request: A): R {
