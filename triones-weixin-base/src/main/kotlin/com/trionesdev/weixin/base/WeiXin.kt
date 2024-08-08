@@ -34,7 +34,9 @@ abstract class WeiXin : WeXinTemplate {
         val request = HttpRequest.Builder().get()
             .url("cgi-bin/token?grant_type=client_credential&appid=${weiXinConfig.appId}&secret=${weiXinConfig.secret}")
             .build()
-        return doExecute(request)
+        val res: AccessTokenResponse = doExecute(request)
+        weiXinConfig.weiXinCache?.setAccessToken(weiXinConfig.appId, res.accessToken, res.expiresIn)
+        return res
     }
     //endregion
 
