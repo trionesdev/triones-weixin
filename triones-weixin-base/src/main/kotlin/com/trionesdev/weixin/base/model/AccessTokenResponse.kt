@@ -12,5 +12,5 @@ class AccessTokenResponse : BaseResponse() {
     var accessToken: String? = null
 
     @JsonProperty(value = "expires_in")
-    var expiresIn: Int? = null
+    var expiresIn: Long? = null
 }

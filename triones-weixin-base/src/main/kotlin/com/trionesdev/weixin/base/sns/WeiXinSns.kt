@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient
 /**
  * 微信网页授权
  */
-open class WeiXinSns : WeiXin , WeiXinSnsTemplate {
+open class WeiXinSns : WeiXin, WeiXinSnsTemplate {
     constructor(weiXinConfig: WeiXinConfig) : super(weiXinConfig)
 
     constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) : super(weiXinConfig, httpClient)
@@ -25,7 +25,7 @@ open class WeiXinSns : WeiXin , WeiXinSnsTemplate {
             .url("sns/oauth2/access_token?appid=${weiXinConfig.appId}&secret=${weiXinConfig.secret}&code=${request.code}&grant_type=authorization_code")
             .build()
         val result: SnsAccessTokenResponse = doExecute(httpRequest)
-        weiXinConfig.weiXinCache?.setSnsAccessToken(weiXinConfig.appId, result.accessToken!!)
+        weiXinCache?.setSnsAccessToken(weiXinConfig.appId, result.accessToken, result.expiresIn)
         return result
     }
 
@@ -69,8 +69,8 @@ open class WeiXinSns : WeiXin , WeiXinSnsTemplate {
         return accessToken?.let {
             return it
         } ?: let {
-            return weiXinConfig.weiXinCache?.let {
-                return it.getSnsAccessToken(weiXinConfig.appId)
+            return weiXinCache?.let { cacheIt ->
+                return cacheIt.getSnsAccessToken(weiXinConfig.appId)
             }
         }
     }

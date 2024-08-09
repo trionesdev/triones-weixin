@@ -9,12 +9,14 @@ import okhttp3.OkHttpClient
 abstract class WeiXin : WeXinTemplate {
     var weiXinConfig: WeiXinConfig
     protected var wxHttpClient: WeiXinHttpClient
+    var weiXinCache: WeiXinCache?
 
     constructor(weiXinConfig: WeiXinConfig) : this(weiXinConfig, null)
 
     constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) {
         this.weiXinConfig = weiXinConfig
         wxHttpClient = WeiXinHttpClient(weiXinConfig, httpClient)
+        weiXinCache = weiXinConfig.weiXinCache
     }
 
     override fun appId(): String? {
@@ -35,7 +37,7 @@ abstract class WeiXin : WeXinTemplate {
             .url("cgi-bin/token?grant_type=client_credential&appid=${weiXinConfig.appId}&secret=${weiXinConfig.secret}")
             .build()
         val res: AccessTokenResponse = doExecute(request)
-        weiXinConfig.weiXinCache?.setAccessToken(weiXinConfig.appId, res.accessToken, res.expiresIn)
+        weiXinCache?.setAccessToken(weiXinConfig.appId, res.accessToken, res.expiresIn)
         return res
     }
     //endregion
@@ -45,8 +47,10 @@ abstract class WeiXin : WeXinTemplate {
         return accessToken?.let {
             return it
         } ?: let {
-            return weiXinConfig.weiXinCache?.let {
-                return it.getAccessToken(weiXinConfig.appId)
+            return weiXinCache?.let {
+                return it.getAccessToken(weiXinConfig.appId) ?: let {
+                    return getAccessToken().accessToken
+                }
             } ?: let {
                 return getAccessToken().accessToken
             }
