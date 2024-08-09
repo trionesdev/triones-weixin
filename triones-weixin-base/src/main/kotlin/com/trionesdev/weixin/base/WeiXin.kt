@@ -1,12 +1,15 @@
 package com.trionesdev.weixin.base
 
+import com.trionesdev.weixin.base.ex.WeiXinException
 import com.trionesdev.weixin.base.model.AccessTokenResponse
 import com.trionesdev.weixin.base.model.BaseResponse
 import com.trionesdev.weixin.base.http.HttpRequest
 import com.trionesdev.weixin.base.http.WeiXinHttpClient
 import okhttp3.OkHttpClient
+import org.slf4j.LoggerFactory
 
 abstract class WeiXin : WeXinTemplate {
+    var LOGGER = LoggerFactory.getLogger(WeiXin::class.java)
     var weiXinConfig: WeiXinConfig
     protected var wxHttpClient: WeiXinHttpClient
     var weiXinCache: WeiXinCache?
@@ -24,7 +27,12 @@ abstract class WeiXin : WeXinTemplate {
     }
 
     protected inline fun <reified R : BaseResponse?, A : HttpRequest?> doExecute(request: A): R {
-        return wxHttpClient.doExecute(request)
+        val res: R = wxHttpClient.doExecute(request)
+        if (res?.errorCode != null) {
+            LOGGER.error("errorCode:{},errorMsg:{}", res.errorCode, res.errorMsg)
+            throw WeiXinException(res.errorCode.toString(), res.errorMsg)
+        }
+        return res
     }
 
     //region 接口调用凭证

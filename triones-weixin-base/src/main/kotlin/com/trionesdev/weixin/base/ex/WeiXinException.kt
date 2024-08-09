@@ -5,7 +5,7 @@ class WeiXinException : RuntimeException {
 
     constructor() : this(null, null, null)
     constructor(code: String) : this(code, null, null)
-    constructor(code: String, message: String) : this(code, message, null)
+    constructor(code: String, message: String?) : this(code, message, null)
 
     constructor(code: String?, message: String?, cause: Throwable?) : super(message, cause) {
         this.code = code
