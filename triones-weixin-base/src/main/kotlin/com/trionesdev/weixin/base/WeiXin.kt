@@ -29,7 +29,7 @@ abstract class WeiXin : WeXinTemplate {
 
     protected inline fun <reified R : BaseResponse?, A : HttpRequest?> doExecute(request: A): R {
         val res: R = wxHttpClient.doExecute(request)
-        if (res?.errorCode != null) {
+        if (res?.errorCode != null && res.errorCode != 0L) {
             logger.error("errorCode:{},errorMsg:{}", res.errorCode, res.errorMsg)
             throw WeiXinException(res.errorCode.toString(), res.errorMsg)
         }
