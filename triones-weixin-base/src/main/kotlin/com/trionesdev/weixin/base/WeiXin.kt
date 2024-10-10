@@ -43,8 +43,6 @@ abstract class WeiXin : WeXinTemplate {
     protected fun <A : HttpRequest?> doExecuteSimple(request: A): ResponseBody? {
         val body = wxHttpClient.doExecuteSimple(request)
         if (!CollectionUtils.containsAny(Lists.newArrayList("image"), body?.contentType()?.type)) {
-            return body
-        } else {
             val res = ObjectMapper().readValue(body.toString(), BaseResponse::class.java)
             if (res?.errorCode != null && res.errorCode != 0L) {
                 logger.error("errorCode:{},errorMsg:{}", res.errorCode, res.errorMsg)
@@ -52,6 +50,8 @@ abstract class WeiXin : WeXinTemplate {
             } else {
                 return body
             }
+        } else {
+            return body
         }
     }
 
