@@ -4,11 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.trionesdev.weixin.base.WeiXin
 import com.trionesdev.weixin.base.WeiXinConfig
 import com.trionesdev.weixin.base.http.HttpRequest
-import com.trionesdev.weixin.miniprogram.model.CheckEncryptedDataRequest
-import com.trionesdev.weixin.miniprogram.model.GetUserPhoneNumberRequest
-import com.trionesdev.weixin.miniprogram.model.CheckEncryptedDataResponse
-import com.trionesdev.weixin.miniprogram.model.Code2SessionResponse
-import com.trionesdev.weixin.miniprogram.model.UserPhoneNumberResponse
+import com.trionesdev.weixin.miniprogram.model.*
 import okhttp3.OkHttpClient
 import org.apache.commons.codec.digest.DigestUtils
 
@@ -59,6 +55,23 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
             .jsonBody(ObjectMapper().writeValueAsString(body))
             .build()
         return doExecute(request)
+    }
+    //endregion
+
+    //region 获取小程序二维码
+    /**
+     * https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/qrcode-link/qr-code/createQRCode.html
+     */
+    override fun createQRCode(createQRCodeRequest: CreateQRCodeRequest): ByteArray? {
+        val body = mutableMapOf<String, String?>()
+        body["path"] = createQRCodeRequest.path
+        createQRCodeRequest.width?.let { body["width"] = it.toString() }
+        val request = HttpRequest.Builder().post()
+            .url("cgi-bin/wxaapp/createwxaqrcode?access_token=${accessToken(createQRCodeRequest.accessToken)}")
+            .jsonBody(ObjectMapper().writeValueAsString(body))
+            .build()
+        val res = doExecuteSimple(request)
+        return res?.bytes()
     }
     //endregion
 

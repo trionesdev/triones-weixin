@@ -2,9 +2,11 @@ package com.trionesdev.weixin.base.http
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.trionesdev.weixin.base.WeiXinConfig
+import com.trionesdev.weixin.base.ex.WeiXinException
 import com.trionesdev.weixin.base.model.BaseResponse
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 
 class WeiXinHttpClient {
@@ -26,7 +28,7 @@ class WeiXinHttpClient {
         }
     }
 
-    inline fun <reified R : BaseResponse?, A : HttpRequest?> doExecute(request: A): R {
+    inline fun <A : HttpRequest?> doExecuteSimple(request: A): ResponseBody? {
         val requestBuilder = Request.Builder()
         request?.let { t ->
             requestBuilder.url(urlFormat(t.url!!)).headers(t.headers)
@@ -41,7 +43,20 @@ class WeiXinHttpClient {
             }
         }
         val res = httpClient.newCall(requestBuilder.build()).execute()
-        return ObjectMapper().readValue(res.body?.string(), R::class.java)
+        if (res.isSuccessful) {
+            return res.body
+        } else {
+            throw WeiXinException("API_REQUEST_ERROR", res.code.toString())
+        }
+    }
+
+    inline fun <reified R : BaseResponse?, A : HttpRequest?> doExecute(request: A): R {
+        val body = doExecuteSimple(request)
+        if (body?.contentType()?.subtype == "json") {
+            return ObjectMapper().readValue(body.string(), R::class.java)
+        } else {
+            throw WeiXinException("CONTENT_TYPE_NOT_JSON")
+        }
     }
 
     fun urlFormat(url: String): String {
