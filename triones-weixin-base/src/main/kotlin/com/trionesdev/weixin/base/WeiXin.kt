@@ -1,6 +1,7 @@
 package com.trionesdev.weixin.base
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.google.common.collect.Lists
 import com.trionesdev.weixin.base.ex.WeiXinException
 import com.trionesdev.weixin.base.model.AccessTokenResponse
 import com.trionesdev.weixin.base.model.BaseResponse
@@ -8,6 +9,7 @@ import com.trionesdev.weixin.base.http.HttpRequest
 import com.trionesdev.weixin.base.http.WeiXinHttpClient
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
+import org.apache.commons.collections4.CollectionUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -40,7 +42,9 @@ abstract class WeiXin : WeXinTemplate {
 
     protected fun <A : HttpRequest?> doExecuteSimple(request: A): ResponseBody? {
         val body = wxHttpClient.doExecuteSimple(request)
-        if (body?.contentType()?.subtype == "json") {
+        if (!CollectionUtils.containsAny(Lists.newArrayList("image"), body?.contentType()?.type)) {
+            return body
+        } else {
             val res = ObjectMapper().readValue(body.toString(), BaseResponse::class.java)
             if (res?.errorCode != null && res.errorCode != 0L) {
                 logger.error("errorCode:{},errorMsg:{}", res.errorCode, res.errorMsg)
@@ -48,8 +52,6 @@ abstract class WeiXin : WeXinTemplate {
             } else {
                 return body
             }
-        } else {
-            return body
         }
     }
 

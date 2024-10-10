@@ -1,6 +1,7 @@
 package com.trionesdev.weixin.base.http
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.google.common.collect.Lists
 import com.trionesdev.weixin.base.WeiXinConfig
 import com.trionesdev.weixin.base.ex.WeiXinException
 import com.trionesdev.weixin.base.model.BaseResponse
@@ -8,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
+import org.apache.commons.collections4.CollectionUtils
 
 class WeiXinHttpClient {
     companion object {
@@ -52,10 +54,10 @@ class WeiXinHttpClient {
 
     inline fun <reified R : BaseResponse?, A : HttpRequest?> doExecute(request: A): R {
         val body = doExecuteSimple(request)
-        if (body?.contentType()?.subtype == "json") {
-            return ObjectMapper().readValue(body.string(), R::class.java)
+        if (!CollectionUtils.containsAny(Lists.newArrayList("image"), body?.contentType()?.type)) {
+            return ObjectMapper().readValue(body?.string(), R::class.java)
         } else {
-            throw WeiXinException("CONTENT_TYPE_NOT_JSON")
+            throw WeiXinException("CONTENT_TYPE_NOT_JSON", "CONTENT_TYPE_NOT_JSON")
         }
     }
 
