@@ -11,5 +11,7 @@ interface WeiXinMiniProgramTemplate : WeXinTemplate {
 
     fun getUserPhoneNumber(getUserPhoneNumberRequest: GetUserPhoneNumberRequest): UserPhoneNumberResponse
 
+    fun getQRCode(getQRCodeRequest: GetQRCodeRequest): ByteArray?
+
     fun createQRCode(createQRCodeRequest: CreateQRCodeRequest): ByteArray?
 }

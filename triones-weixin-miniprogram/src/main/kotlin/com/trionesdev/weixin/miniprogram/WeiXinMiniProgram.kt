@@ -58,8 +58,28 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
     }
     //endregion
 
-    //region 获取小程序二维码
     /**
+     * 获取小程序码
+     * https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/qrcode-link/qr-code/getQRCode.html
+     */
+    override fun getQRCode(getQRCodeRequest: GetQRCodeRequest): ByteArray? {
+        val body = mutableMapOf<String, Any?>()
+        body["path"] = getQRCodeRequest.path
+        getQRCodeRequest.width?.let { body["width"] = it }
+        getQRCodeRequest.autoColor?.let { body["auto_color"] = it }
+        getQRCodeRequest.lineColor?.let { body["line_color"] = it }
+        getQRCodeRequest.hyaline?.let { body["is_hyaline"] = it }
+        getQRCodeRequest.envVersion?.let { body["env_version"] = it }
+        val request = HttpRequest.Builder().post()
+            .url("wxa/getwxacode?access_token=${accessToken(getQRCodeRequest.accessToken)}")
+            .jsonBody(ObjectMapper().writeValueAsString(body))
+            .build()
+        val res = doExecuteSimple(request)
+        return res?.bytes()
+    }
+
+    /**
+     * 获取小程序二维码
      * https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/qrcode-link/qr-code/createQRCode.html
      */
     override fun createQRCode(createQRCodeRequest: CreateQRCodeRequest): ByteArray? {
@@ -73,6 +93,5 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
         val res = doExecuteSimple(request)
         return res?.bytes()
     }
-    //endregion
 
 }
