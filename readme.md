@@ -1,4 +1,32 @@
 #  微信SDK
+> 对微信API封装的SDK，便于用户使用
+---
+## 支持
+[公众号](triones-weixin-offiaccount)
+
+[小程序](triones-weixin-miniprogram)
+
+[网页](triones-weixin-web)
+
+[APP](triones-weixin-app)
+
+[开放平台](triones-weixin-oplatform)
+
+## 使用
+添加依赖
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.trionesdev.weixin</groupId>
+            <artifactId>triones-weixin-dependencies</artifactId>
+            <version>版本号</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
 
 ---
 ### 关注我们，一起交流
