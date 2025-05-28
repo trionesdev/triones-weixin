@@ -20,7 +20,7 @@ class WeiXinOfficeAccount : WeiXin, WeiXinOfficeAccountTemplate {
         weiXinJsapi = WeiXinOfficeAccountJsapi(weiXinConfig, wxHttpClient.httpClient)
     }
 
-    override fun getSnsInstance():WeiXinSns{
+    override fun getSnsInstance(): WeiXinSns {
         return this.weiXinSns
     }
 
@@ -35,7 +35,7 @@ class WeiXinOfficeAccount : WeiXin, WeiXinOfficeAccountTemplate {
      */
     override fun sendTemplateMessage(request: SendTemplateMessageRequest): SendTemplateMessageResponse {
         val httpRequest = HttpRequest.Builder().post()
-            .url("cgi-bin/message/template/send?access_token=${accessToken(request.accessToken)}")
+            .url("cgi-bin/message/template/send?access_token=${accessToken(request.appId, request.accessToken)}")
             .jsonBody(request)
             .build()
         return doExecute(httpRequest)
@@ -51,7 +51,14 @@ class WeiXinOfficeAccount : WeiXin, WeiXinOfficeAccountTemplate {
      */
     override fun getUserList(req: GetUserListRequest): GetUserListResponse {
         val httpRequest = HttpRequest.Builder().get()
-            .url("cgi-bin/user/get?access_token=${accessToken(req.accessToken)}&next_openid=${req.nextOpenId ?: ""}")
+            .url(
+                "cgi-bin/user/get?access_token=${
+                    accessToken(
+                        req.appId,
+                        req.accessToken
+                    )
+                }&next_openid=${req.nextOpenId ?: ""}"
+            )
             .build()
         return doExecute(httpRequest)
     }
@@ -63,7 +70,14 @@ class WeiXinOfficeAccount : WeiXin, WeiXinOfficeAccountTemplate {
      */
     override fun getUserBasicInformation(req: GetBaseUserInfoRequest): GetBaseUserInfoResponse {
         val httpRequest = HttpRequest.Builder().get()
-            .url("cgi-bin/user/info?access_token=${accessToken(accessToken(req.accessToken))}&openid=${req.openId}&lang=${req.lang}")
+            .url(
+                "cgi-bin/user/info?access_token=${
+                    accessToken(
+                        req.appId,
+                        req.accessToken
+                    )
+                }&openid=${req.openId}&lang=${req.lang}"
+            )
             .build()
         return doExecute(httpRequest)
     }

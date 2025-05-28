@@ -3,32 +3,53 @@ package com.trionesdev.weixin.base
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.collect.Lists
 import com.trionesdev.weixin.base.ex.WeiXinException
-import com.trionesdev.weixin.base.model.AccessTokenResponse
-import com.trionesdev.weixin.base.model.BaseResponse
 import com.trionesdev.weixin.base.http.HttpRequest
 import com.trionesdev.weixin.base.http.WeiXinHttpClient
+import com.trionesdev.weixin.base.model.AccessTokenResponse
+import com.trionesdev.weixin.base.model.BaseResponse
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import org.apache.commons.collections4.CollectionUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.util.function.BinaryOperator
+import java.util.function.Function
+import java.util.stream.Collectors
 
 abstract class WeiXin : WeXinTemplate {
     var logger: Logger = LoggerFactory.getLogger(WeiXin::class.java)
     var weiXinConfig: WeiXinConfig
+    var weiXinIdentityMap: Map<String, WeiXinIdentity>?
     protected var wxHttpClient: WeiXinHttpClient
     var weiXinCache: WeiXinCache?
+
+    fun weixinIdentityConfigs(weiXinConfig: WeiXinConfig): MutableMap<String, WeiXinIdentity>? {
+        return weiXinConfig.multi?.stream()?.collect(
+            Collectors.toMap(
+                WeiXinIdentity::appId,
+                Function { v: WeiXinIdentity -> v },
+                BinaryOperator { a: WeiXinIdentity, b: WeiXinIdentity -> a })
+        )
+    }
 
     constructor(weiXinConfig: WeiXinConfig) : this(weiXinConfig, null)
 
     constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) {
         this.weiXinConfig = weiXinConfig
+        this.weiXinIdentityMap = weixinIdentityConfigs(weiXinConfig)
         wxHttpClient = WeiXinHttpClient(weiXinConfig, httpClient)
         weiXinCache = weiXinConfig.cache
     }
 
     override fun appId(): String? {
         return weiXinConfig.appId
+    }
+
+    /**
+     * 获取微信
+     */
+    fun weixinIdentityConfig(appId: String?): WeiXinIdentity? {
+        return appId?.let { weiXinIdentityMap?.get(appId) } ?: let { weiXinConfig }
     }
 
     protected inline fun <reified R : BaseResponse?, A : HttpRequest?> doExecute(request: A): R {
@@ -60,27 +81,28 @@ abstract class WeiXin : WeXinTemplate {
      * 获取小程序全局唯一后台接口调用凭据
      * https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/access-token/auth.getAccessToken.html
      */
-    override fun getAccessToken(): AccessTokenResponse {
+    override fun getAccessToken(appId: String?): AccessTokenResponse {
+        val weiXinItemConfig = weixinIdentityConfig(appId)
         val request = HttpRequest.Builder().get()
-            .url("cgi-bin/token?grant_type=client_credential&appid=${weiXinConfig.appId}&secret=${weiXinConfig.secret}")
+            .url("cgi-bin/token?grant_type=client_credential&appid=${weiXinItemConfig?.appId}&secret=${weiXinItemConfig?.secret}")
             .build()
         val res: AccessTokenResponse = doExecute(request)
-        weiXinCache?.setAccessToken(weiXinConfig.appId, res.accessToken, res.expiresIn)
+        weiXinCache?.setAccessToken(weiXinItemConfig?.appId, res.accessToken, res.expiresIn)
         return res
     }
     //endregion
 
 
-    fun accessToken(accessToken: String?): String? {
+    fun accessToken(appId: String?, accessToken: String?): String? {
         return accessToken?.let {
             return it
         } ?: let {
             return weiXinCache?.let {
                 return it.getAccessToken(weiXinConfig.appId) ?: let {
-                    return getAccessToken().accessToken
+                    return getAccessToken(appId).accessToken
                 }
             } ?: let {
-                return getAccessToken().accessToken
+                return getAccessToken(appId).accessToken
             }
         }
     }

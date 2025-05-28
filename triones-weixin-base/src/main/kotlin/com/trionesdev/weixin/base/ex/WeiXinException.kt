@@ -1,10 +1,10 @@
 package com.trionesdev.weixin.base.ex
 
-class WeiXinException : RuntimeException {
+open class WeiXinException : RuntimeException {
     private var code: String? = null
 
     constructor() : this(null, null, null)
-    constructor(code: String) : this(code, null, null)
+    constructor(message: String) : this(null, message, null)
     constructor(code: String, message: String?) : this(code, message, null)
 
     constructor(code: String?, message: String?, cause: Throwable?) : super(message, cause) {

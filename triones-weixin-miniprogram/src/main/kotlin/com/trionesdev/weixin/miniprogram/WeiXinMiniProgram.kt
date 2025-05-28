@@ -35,7 +35,14 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
         val body = mutableMapOf<String, String>()
         body["encrypted_msg_hash"] = DigestUtils.sha1Hex(checkEncryptedDataRequest.encryptedMsg)
         val request = HttpRequest.Builder().post()
-            .url("wxa/business/checkencryptedmsg?access_token=${accessToken(checkEncryptedDataRequest.accessToken)}")
+            .url(
+                "wxa/business/checkencryptedmsg?access_token=${
+                    accessToken(
+                        checkEncryptedDataRequest.appId,
+                        checkEncryptedDataRequest.accessToken
+                    )
+                }"
+            )
             .jsonBody(ObjectMapper().writeValueAsString(body))
             .build()
         return doExecute(request)
@@ -51,7 +58,14 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
         val body = mutableMapOf<String, String?>()
         body["code"] = getUserPhoneNumberRequest.code
         val request = HttpRequest.Builder().post()
-            .url("wxa/business/getuserphonenumber?access_token=${accessToken(getUserPhoneNumberRequest.accessToken)}")
+            .url(
+                "wxa/business/getuserphonenumber?access_token=${
+                    accessToken(
+                        getUserPhoneNumberRequest.appId,
+                        getUserPhoneNumberRequest.accessToken
+                    )
+                }"
+            )
             .jsonBody(ObjectMapper().writeValueAsString(body))
             .build()
         return doExecute(request)
@@ -71,7 +85,7 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
         getQRCodeRequest.hyaline?.let { body["is_hyaline"] = it }
         getQRCodeRequest.envVersion?.let { body["env_version"] = it }
         val request = HttpRequest.Builder().post()
-            .url("wxa/getwxacode?access_token=${accessToken(getQRCodeRequest.accessToken)}")
+            .url("wxa/getwxacode?access_token=${accessToken(getQRCodeRequest.appId, getQRCodeRequest.accessToken)}")
             .jsonBody(ObjectMapper().writeValueAsString(body))
             .build()
         val res = doExecuteSimple(request)
@@ -87,7 +101,14 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
         body["path"] = createQRCodeRequest.path
         createQRCodeRequest.width?.let { body["width"] = it.toString() }
         val request = HttpRequest.Builder().post()
-            .url("cgi-bin/wxaapp/createwxaqrcode?access_token=${accessToken(createQRCodeRequest.accessToken)}")
+            .url(
+                "cgi-bin/wxaapp/createwxaqrcode?access_token=${
+                    accessToken(
+                        createQRCodeRequest.appId,
+                        createQRCodeRequest.accessToken
+                    )
+                }"
+            )
             .jsonBody(ObjectMapper().writeValueAsString(body))
             .build()
         val res = doExecuteSimple(request)

@@ -5,5 +5,5 @@ import com.trionesdev.weixin.base.model.AccessTokenResponse
 interface WeXinTemplate {
     fun appId(): String?
 
-    fun getAccessToken(): AccessTokenResponse
+    fun getAccessToken(appId: String?): AccessTokenResponse
 }

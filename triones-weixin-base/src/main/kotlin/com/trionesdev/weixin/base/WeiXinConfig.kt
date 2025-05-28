@@ -2,9 +2,8 @@ package com.trionesdev.weixin.base
 
 import okhttp3.logging.HttpLoggingInterceptor
 
-open class WeiXinConfig {
+open class WeiXinConfig : WeiXinIdentity(){
     var httpLogLevel: HttpLoggingInterceptor.Level? = null
-    var appId: String? = null
-    var secret: String? = null
     var cache: WeiXinCache? = null
+    var multi: List<WeiXinIdentity>? = null
 }
