@@ -24,7 +24,7 @@ abstract class WeiXin : WeXinTemplate {
     constructor(weiXinConfig: WeiXinConfig, httpClient: OkHttpClient?) {
         this.weiXinConfig = weiXinConfig
         wxHttpClient = WeiXinHttpClient(weiXinConfig, httpClient)
-        weiXinCache = weiXinConfig.weiXinCache
+        weiXinCache = weiXinConfig.cache
     }
 
     override fun appId(): String? {

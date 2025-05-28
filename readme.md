@@ -28,6 +28,9 @@
 </dependencyManagement>
 ```
 
+## 缓存
+写一个 `com.trionesdev.weixin.base.WeiXinCache`的实现类，内部自行进行缓存处理。将对象赋给 `WeiXinConfig`的`cache`
+
 ---
 ### 关注我们，一起交流
 > 留言回复不及时，可以通过关注公众号联系我们

@@ -3,13 +3,12 @@ package com.trionesdev.weixin.offiaccount.jsapi
 import com.trionesdev.weixin.base.WeiXin
 import com.trionesdev.weixin.base.WeiXinConfig
 import com.trionesdev.weixin.base.http.HttpRequest
-import com.trionesdev.weixin.base.sns.WeiXinSns
 import com.trionesdev.weixin.base.util.DigestUtils
 import com.trionesdev.weixin.offiaccount.jsapi.model.JsapiSignatureRequest
 import com.trionesdev.weixin.offiaccount.jsapi.model.JsapiTicketRequest
 import com.trionesdev.weixin.offiaccount.jsapi.model.JsapiTicketResponse
 import okhttp3.OkHttpClient
-import java.util.TreeMap
+import java.util.*
 
 open class WeiXinOfficeAccountJsapi :WeiXin  {
 
@@ -44,7 +43,7 @@ open class WeiXinOfficeAccountJsapi :WeiXin  {
         return ticket?.let {
             return it
         } ?: let {
-            return weiXinConfig.weiXinCache?.let {
+            return weiXinConfig.cache?.let {
                 return it.getJsapiTicket(weiXinConfig.appId)
             }
         }

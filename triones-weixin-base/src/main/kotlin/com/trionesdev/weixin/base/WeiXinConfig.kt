@@ -6,5 +6,5 @@ open class WeiXinConfig {
     var httpLogLevel: HttpLoggingInterceptor.Level? = null
     var appId: String? = null
     var secret: String? = null
-    var weiXinCache: WeiXinCache? = null
+    var cache: WeiXinCache? = null
 }
