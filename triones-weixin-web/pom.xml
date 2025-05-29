@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.trionesdev.weixin</groupId>
         <artifactId>triones-weixin</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <name>Triones:WeiXin:Web</name>
     <artifactId>triones-weixin-web</artifactId>
