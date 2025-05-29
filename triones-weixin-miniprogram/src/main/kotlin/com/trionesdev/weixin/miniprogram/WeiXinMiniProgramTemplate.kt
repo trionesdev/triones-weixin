@@ -5,7 +5,7 @@ import com.trionesdev.weixin.miniprogram.model.*
 import java.nio.ByteBuffer
 
 interface WeiXinMiniProgramTemplate : WeXinTemplate {
-    fun code2Session(code: String): Code2SessionResponse
+    fun code2Session(code: String,appId: String?): Code2SessionResponse
 
     fun checkEncryptedData(checkEncryptedDataRequest: CheckEncryptedDataRequest): CheckEncryptedDataResponse
 

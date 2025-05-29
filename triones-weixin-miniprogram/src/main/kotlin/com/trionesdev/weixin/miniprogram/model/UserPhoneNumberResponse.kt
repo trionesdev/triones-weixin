@@ -14,7 +14,8 @@ class UserPhoneNumberResponse : BaseResponse() {
 
         class Watermark{
             var timestamp:Long? = null
-            var appid:String? = null
+            @JsonProperty(value = "appid")
+            var appId:String? = null
         }
     }
 }

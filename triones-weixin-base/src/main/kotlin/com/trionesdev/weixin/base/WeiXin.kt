@@ -50,9 +50,9 @@ abstract class WeiXin : WeXinTemplate {
     }
 
     /**
-     * 获取微信配置，如果请求时带上了appId，则从map中取对应的微信账户信息
+     * 获取微信配置，如果请求时带上了appId，则从map中取对应的微信账户凭证信息
      */
-    fun weiXinIdentityConfig(appId: String?): WeiXinCredentials? {
+    fun weiXinCredentials(appId: String?): WeiXinCredentials {
         return appId?.let { weiXinCredentialsMap?.get(appId) } ?: let { weiXinConfig }
     }
 
@@ -86,12 +86,12 @@ abstract class WeiXin : WeXinTemplate {
      * https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/access-token/auth.getAccessToken.html
      */
     override fun getAccessToken(appId: String?): AccessTokenResponse {
-        val weiXinItemConfig = weiXinIdentityConfig(appId)
+        val weiXinCredentials = weiXinCredentials(appId)
         val request = HttpRequest.Builder().get()
-            .url("cgi-bin/token?grant_type=client_credential&appid=${weiXinItemConfig?.appId}&secret=${weiXinItemConfig?.secret}")
+            .url("cgi-bin/token?grant_type=client_credential&appid=${weiXinCredentials.appId}&secret=${weiXinCredentials.secret}")
             .build()
         val res: AccessTokenResponse = doExecute(request)
-        weiXinCache?.setAccessToken(weiXinItemConfig?.appId, res.accessToken, res.expiresIn)
+        weiXinCache?.setAccessToken(weiXinCredentials.appId, res.accessToken, res.expiresIn)
         return res
     }
     //endregion
@@ -102,7 +102,7 @@ abstract class WeiXin : WeXinTemplate {
             return it
         } ?: let {
             return weiXinCache?.let {
-                return it.getAccessToken(weiXinConfig.appId) ?: let {
+                return it.getAccessToken( appId) ?: let {
                     return getAccessToken(appId).accessToken
                 }
             } ?: let {

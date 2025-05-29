@@ -21,8 +21,9 @@ open class WeiXinOfficeAccountJsapi :WeiXin  {
      * https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#4
      */
     fun getJsapiTicket(request: JsapiTicketRequest): JsapiTicketResponse {
+        val weiXinCredentials = weiXinCredentials(request.appId)
         val httpRequest = HttpRequest.Builder().post()
-            .url("cgi-bin/ticket/getticket?access_token=${accessToken(request.accessToken)}&type=${request.type}")
+            .url("cgi-bin/ticket/getticket?access_token=${accessToken(weiXinCredentials.appId,request.accessToken)}&type=${request.type}")
             .jsonBody(request)
             .build()
         return doExecute(httpRequest)
@@ -39,12 +40,12 @@ open class WeiXinOfficeAccountJsapi :WeiXin  {
         return DigestUtils.sha1(strArr.joinToString(separator = "&"))
     }
 
-    protected fun jsapiTicket(ticket: String?): String? {
+    protected fun jsapiTicket(ticket: String?,appId: String?): String? {
         return ticket?.let {
             return it
         } ?: let {
             return weiXinConfig.cache?.let {
-                return it.getJsapiTicket(weiXinConfig.appId)
+                return it.getJsapiTicket(appId)
             }
         }
     }

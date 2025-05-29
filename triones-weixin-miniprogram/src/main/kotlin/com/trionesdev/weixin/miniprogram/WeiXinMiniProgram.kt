@@ -19,9 +19,10 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
      * 登录凭证校验
      * https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html
      */
-    override fun code2Session(code: String): Code2SessionResponse {
+    override fun code2Session(code: String,appId: String?): Code2SessionResponse {
+        val weiXinCredentials = weiXinCredentials(appId)
         val request = HttpRequest.Builder().get()
-            .url("sns/jscode2session?appid=${weiXinConfig.appId}&secret=${weiXinConfig.secret}&js_code=${code}&grant_type=authorization_code")
+            .url("sns/jscode2session?appid=${weiXinCredentials.appId}&secret=${weiXinCredentials.secret}&js_code=${code}&grant_type=authorization_code")
             .build()
         return doExecute(request)
     }
@@ -55,6 +56,7 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
      * https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-info/phone-number/getPhoneNumber.html#%E8%B0%83%E7%94%A8%E6%96%B9%E5%BC%8F
      */
     override fun getUserPhoneNumber(getUserPhoneNumberRequest: GetUserPhoneNumberRequest): UserPhoneNumberResponse {
+
         val body = mutableMapOf<String, String?>()
         body["code"] = getUserPhoneNumberRequest.code
         val request = HttpRequest.Builder().post()
