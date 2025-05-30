@@ -14,6 +14,9 @@ class WeiXinWeb : WeiXin, WeiXinWebTemplate {
         weiXinSns = WeiXinSns(weiXinConfig, wxHttpClient.httpClient)
     }
 
+    /**
+     * 获取sns实例
+     */
     override fun getSnsInstance():WeiXinSns{
         return this.weiXinSns
     }

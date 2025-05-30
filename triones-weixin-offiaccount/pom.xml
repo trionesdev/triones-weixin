@@ -5,7 +5,7 @@
     <parent>
         <artifactId>triones-weixin</artifactId>
         <groupId>com.trionesdev.weixin</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1-M1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <name>Triones:WeiXin:OfficeAccount</name>
@@ -30,17 +30,14 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
-<!--            <version>${kotlin.version}</version>-->
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
-<!--            <version>${kotlin.version}</version>-->
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test</artifactId>
-<!--            <version>${kotlin.version}</version>-->
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -60,12 +57,6 @@
                         <goals>
                             <goal>compile</goal>
                         </goals>
-                        <configuration>
-                            <sourceDirs>
-<!--                                <source>src/main/java</source>-->
-                                <source>src/main/kotlin</source>
-                            </sourceDirs>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>test-compile</id>
