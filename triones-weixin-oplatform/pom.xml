@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.trionesdev.weixin</groupId>
         <artifactId>triones-weixin</artifactId>
-        <version>0.0.1-M1</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <name>Triones:WeiXin:OpenPlatform</name>
     <artifactId>triones-weixin-oplatform</artifactId>

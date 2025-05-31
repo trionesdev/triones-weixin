@@ -28,7 +28,7 @@ abstract class WeiXin : WeXinTemplate {
     var weiXinCache: WeiXinCache?
 
     fun buildWeiXinCredentialsMap(weiXinConfig: WeiXinConfig): MutableMap<String, WeiXinCredentials>? {
-        return weiXinConfig.credentials?.stream()?.collect(
+        return weiXinConfig.credentials?.values?.stream()?.collect(
             Collectors.toMap(
                 WeiXinCredentials::appId,
                 Function { v: WeiXinCredentials -> v },
@@ -47,6 +47,10 @@ abstract class WeiXin : WeXinTemplate {
 
     override fun appId(): String? {
         return weiXinConfig.appId
+    }
+
+    override fun credentials(key: String): WeiXinCredentials?{
+        return weiXinConfig.credentials?.get(key)
     }
 
     /**

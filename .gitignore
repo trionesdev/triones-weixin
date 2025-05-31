@@ -3,3 +3,4 @@
 *.iml
 */*.iml
 */target/*
+**.versionsBackup

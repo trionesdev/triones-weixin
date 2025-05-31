@@ -10,5 +10,5 @@ open class WeiXinConfig : WeiXinCredentials() {
     /**
      * 多个微信平台账号时
      */
-    var credentials: List<WeiXinCredentials>? = null
+    var credentials: Map<String, WeiXinCredentials>? = null
 }

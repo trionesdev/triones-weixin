@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.trionesdev.weixin</groupId>
     <artifactId>triones-weixin-dependencies</artifactId>
-    <version>0.0.1-M1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Triones:WeiXin:Dependencies</name>
     <url>https://github.com/trionesdev/triones-weixin</url>
