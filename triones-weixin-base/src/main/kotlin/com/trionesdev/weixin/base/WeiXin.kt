@@ -45,10 +45,16 @@ abstract class WeiXin : WeXinTemplate {
         weiXinCache = weiXinConfig.cache
     }
 
+    /**
+     * 获取默认的AppId
+     */
     override fun appId(): String? {
         return weiXinConfig.appId
     }
 
+    /**
+     * 根据key获取对应的通行证信息
+     */
     override fun getCredentials(key: String): WeiXinCredentials?{
         return weiXinConfig.credentials?.get(key)
     }
