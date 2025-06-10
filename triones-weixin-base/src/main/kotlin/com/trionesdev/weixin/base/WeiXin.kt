@@ -49,7 +49,7 @@ abstract class WeiXin : WeXinTemplate {
         return weiXinConfig.appId
     }
 
-    override fun credentials(key: String): WeiXinCredentials?{
+    override fun getCredentials(key: String): WeiXinCredentials?{
         return weiXinConfig.credentials?.get(key)
     }
 

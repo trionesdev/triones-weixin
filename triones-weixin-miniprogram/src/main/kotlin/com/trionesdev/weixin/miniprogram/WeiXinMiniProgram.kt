@@ -19,10 +19,10 @@ class WeiXinMiniProgram : WeiXin, WeiXinMiniProgramTemplate {
      * 登录凭证校验
      * https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html
      */
-    override fun code2Session(code: String,appId: String?): Code2SessionResponse {
-        val weiXinCredentials = weiXinCredentials(appId)
+    override fun code2Session(code2SessionRequest: Code2SessionRequest): Code2SessionResponse {
+        val weiXinCredentials = weiXinCredentials(code2SessionRequest.appId)
         val request = HttpRequest.Builder().get()
-            .url("sns/jscode2session?appid=${weiXinCredentials.appId}&secret=${weiXinCredentials.secret}&js_code=${code}&grant_type=authorization_code")
+            .url("sns/jscode2session?appid=${weiXinCredentials.appId}&secret=${weiXinCredentials.secret}&js_code=${code2SessionRequest.code}&grant_type=authorization_code")
             .build()
         return doExecute(request)
     }
