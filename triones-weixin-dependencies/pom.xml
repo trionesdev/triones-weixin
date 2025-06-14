@@ -90,12 +90,18 @@
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>okhttp</artifactId>
-                <version>4.9.3</version>
+                <version>4.12.0</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-stdlib-common</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>logging-interceptor</artifactId>
-                <version>4.9.3</version>
+                <version>4.12.0</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.fastjson2</groupId>
