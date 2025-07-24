@@ -10,4 +10,16 @@ class Code2SessionRequest {
      * 小程序端通过 wx.login 获得的code
      */
     var code: String? = null
+
+    companion object {
+        @JvmStatic
+        fun builder() = Builder()
+    }
+
+    class Builder {
+        var request = Code2SessionRequest()
+        fun appId(appId: String?) = apply { request.appId = appId }
+        fun code(code: String?) = apply { request.code = code }
+        fun build() = request
+    }
 }

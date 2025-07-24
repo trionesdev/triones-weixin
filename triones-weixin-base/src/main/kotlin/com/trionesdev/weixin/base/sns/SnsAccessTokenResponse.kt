@@ -21,4 +21,6 @@ class SnsAccessTokenResponse : BaseResponse() {
 
     @JsonProperty(value = "unionid")
     var unionId: String? = null
+
+
 }
