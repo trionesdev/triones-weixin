@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.trionesdev.weixin</groupId>
-    <artifactId>triones-weixin-dependencies</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>weixin-dependencies</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Triones:WeiXin:Dependencies</name>
     <url>https://github.com/trionesdev/triones-weixin</url>
@@ -138,27 +138,27 @@
 
             <dependency>
                 <groupId>com.trionesdev.weixin</groupId>
-                <artifactId>triones-weixin-base</artifactId>
+                <artifactId>weixin-base</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.trionesdev.weixin</groupId>
-                <artifactId>triones-weixin-miniprogram</artifactId>
+                <artifactId>weixin-miniprogram</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.trionesdev.weixin</groupId>
-                <artifactId>triones-weixin-offiaccount</artifactId>
+                <artifactId>weixin-offiaccount</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.trionesdev.weixin</groupId>
-                <artifactId>triones-weixin-web</artifactId>
+                <artifactId>weixin-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.trionesdev.weixin</groupId>
-                <artifactId>triones-weixin-app</artifactId>
+                <artifactId>weixin-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

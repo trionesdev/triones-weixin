@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.trionesdev.weixin</groupId>
-        <artifactId>triones-weixin</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>weixin</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
     </parent>
 
     <name>Triones:WeiXin:App</name>
-    <artifactId>triones-weixin-app</artifactId>
+    <artifactId>weixin-app</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>com.trionesdev.weixin</groupId>
-            <artifactId>triones-weixin-base</artifactId>
+            <artifactId>weixin-base</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
