@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.trionesdev.weixin</groupId>
-    <artifactId>weixin</artifactId>
+    <artifactId>triones-weixin</artifactId>
     <packaging>pom</packaging>
     <version>0.0.2-SNAPSHOT</version>
     <name>Triones:WeiXin</name>
@@ -32,13 +32,8 @@
     </scm>
 
     <modules>
-        <module>weixin-base</module>
-        <module>weixin-miniprogram</module>
-        <module>weixin-offiaccount</module>
-        <module>weixin-oplatform</module>
-        <module>weixin-app</module>
-        <module>weixin-web</module>
         <module>weixin-dependencies</module>
+        <module>weixin</module>
     </modules>
 
     <properties>
@@ -49,17 +44,7 @@
         <kotlin.version>2.1.21</kotlin.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.trionesdev.weixin</groupId>
-                <artifactId>weixin-dependencies</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
 
     <dependencies>
         <dependency>

@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.trionesdev.weixin</groupId>
         <artifactId>weixin</artifactId>
         <version>0.0.2-SNAPSHOT</version>
     </parent>
-    <name>Triones:WeiXin:Web</name>
-    <artifactId>weixin-web</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+    <name>Triones:WeiXin:MiniProgram</name>
+    <artifactId>weixin-miniprogram</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,20 +30,23 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
+<!--            <version>${kotlin.version}</version>-->
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
+<!--            <version>${kotlin.version}</version>-->
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test</artifactId>
+<!--            <version>${kotlin.version}</version>-->
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
             <plugin>
@@ -59,7 +62,7 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <!--                                <source>src/main/java</source>-->
+                                <source>src/main/java</source>
                                 <source>src/main/kotlin</source>
                             </sourceDirs>
                         </configuration>

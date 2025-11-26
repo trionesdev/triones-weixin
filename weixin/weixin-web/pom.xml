@@ -8,8 +8,8 @@
         <artifactId>weixin</artifactId>
         <version>0.0.2-SNAPSHOT</version>
     </parent>
-    <name>Triones:WeiXin:OpenPlatform</name>
-    <artifactId>weixin-oplatform</artifactId>
+    <name>Triones:WeiXin:Web</name>
+    <artifactId>weixin-web</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,23 +30,20 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
-            <!--            <version>${kotlin.version}</version>-->
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <!--            <version>${kotlin.version}</version>-->
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test</artifactId>
-            <!--            <version>${kotlin.version}</version>-->
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
             <plugin>
