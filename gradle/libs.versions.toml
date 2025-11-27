@@ -1,0 +1,13 @@
+[versions]
+kotlin = "2.2.21"
+kotlinStdlib = "2.2.21"
+junit="5.8.2"
+
+[libraries]
+junit-jupiter-api = {module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit"}
+kotlin-stdlib = {module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinStdlib"}
+kotlin-reflect = {module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin"}
+kotlin-stdlib-jdk8 = {module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin"}
+kotlin-test = {module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin"}
+commons-codec = {module = "commons-codec:commons-codec", version = "1.16.0"}
+[plugins]
