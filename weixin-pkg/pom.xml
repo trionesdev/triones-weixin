@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.trionesdev.weixin</groupId>
-        <artifactId>triones-weixin</artifactId>
+        <artifactId>weixin</artifactId>
         <version>0.0.2-SNAPSHOT</version>
     </parent>
     <packaging>pom</packaging>
-    <artifactId>weixin</artifactId>
+    <artifactId>weixin-pkg</artifactId>
 
     <modules>
         <module>weixin-base</module>

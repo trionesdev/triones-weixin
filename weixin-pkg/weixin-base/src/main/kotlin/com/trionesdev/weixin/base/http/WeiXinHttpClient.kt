@@ -30,7 +30,7 @@ class WeiXinHttpClient {
         }
     }
 
-    inline fun <A : HttpRequest?> doExecuteSimple(request: A): ResponseBody? {
+    fun <A : HttpRequest?> doExecuteSimple(request: A): ResponseBody? {
         val requestBuilder = Request.Builder()
         request?.let { t ->
             requestBuilder.url(urlFormat(t.url!!)).headers(t.headers)

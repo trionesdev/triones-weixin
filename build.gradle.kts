@@ -10,27 +10,52 @@ subprojects {
     repositories {
         mavenCentral()
     }
-    
-    apply(plugin = "org.jetbrains.kotlin.jvm")
+
     apply(plugin = "maven-publish")
-    
-    configure<JavaPluginExtension> {
-        sourceCompatibility = JavaVersion.toVersion(property("maven_compiler_source"))
-        targetCompatibility = JavaVersion.toVersion(property("maven_compiler_target"))
+
+    if (name != "weixin-dependencies") {
+        apply(plugin = "org.jetbrains.kotlin.jvm")
     }
-    
-    configure<org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension> {
-        jvmToolchain(property("maven_compiler_source").toString().toInt())
+
+    plugins.withType<JavaPlugin> {
+        extensions.configure<JavaPluginExtension> {
+            sourceCompatibility = JavaVersion.toVersion(property("maven_compiler_source").toString())
+            targetCompatibility = JavaVersion.toVersion(property("maven_compiler_target").toString())
+        }
     }
-    
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = "com.trionesdev.weixin"
-                artifactId = project.name
-                version = project.version.toString()
-                
-                from(components["java"])
+
+    plugins.withId("org.jetbrains.kotlin.jvm") {
+        extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension> {
+            jvmToolchain(property("maven_compiler_source").toString().toInt())
+        }
+    }
+
+    val mavenPublication = extensions
+        .getByType<PublishingExtension>()
+        .publications
+        .register("maven", MavenPublication::class) {
+            groupId = "com.trionesdev.weixin"
+            artifactId = project.name
+            version = project.version.toString()
+        }
+
+    afterEvaluate {
+        val component = components.findByName("java") ?: components.findByName("javaPlatform")
+        if (component != null) {
+            mavenPublication.get().from(component)
+        }
+    }
+
+    // Configure publishing repositories
+    extensions.configure<PublishingExtension> {
+        repositories {
+            maven {
+                name = "trionesdev"
+                url = uri("https://maven.cnb.cool/trionesdev/mvn/-/packages/")
+                credentials {
+                    username = properties["mavenRepoUsername"] as String
+                    password = properties["mavenRepoPassword"] as String
+                }
             }
         }
     }

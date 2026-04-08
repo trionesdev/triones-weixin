@@ -7,3 +7,8 @@
 **.versionsBackup
 .vscode
 .gradle
+.kotlin
+build/
+bin/
+**/build/
+**/bin/
