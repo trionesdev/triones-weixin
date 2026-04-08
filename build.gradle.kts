@@ -45,4 +45,18 @@ subprojects {
             mavenPublication.get().from(component)
         }
     }
+
+    // Configure publishing repositories
+    extensions.configure<PublishingExtension> {
+        repositories {
+            maven {
+                name = "trionesdev"
+                url = uri("https://maven.cnb.cool/trionesdev/mvn/-/packages/")
+                credentials {
+                    username = properties["mavenRepoUsername"] as String
+                    password = properties["mavenRepoPassword"] as String
+                }
+            }
+        }
+    }
 }

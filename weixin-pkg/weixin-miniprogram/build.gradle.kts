@@ -6,7 +6,7 @@ group = "com.trionesdev.weixin"
 version = property("version") as String
 
 dependencies {
-    implementation(project(":weixin:weixin-base"))
+    implementation(project(":weixin-pkg:weixin-base"))
 }
 
 kotlin {

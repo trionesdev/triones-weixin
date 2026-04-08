@@ -1,11 +1,11 @@
-rootProject.name = "triones-weixin"
+rootProject.name = "weixin"
 
 include("weixin-dependencies")
-include("weixin")
+include("weixin-pkg")
 
-include("weixin:weixin-base")
-include("weixin:weixin-miniprogram")
-include("weixin:weixin-offiaccount")
-include("weixin:weixin-oplatform")
-include("weixin:weixin-app")
-include("weixin:weixin-web")
+include("weixin-pkg:weixin-base")
+include("weixin-pkg:weixin-miniprogram")
+include("weixin-pkg:weixin-offiaccount")
+include("weixin-pkg:weixin-oplatform")
+include("weixin-pkg:weixin-app")
+include("weixin-pkg:weixin-web")
