@@ -5,15 +5,15 @@
 
 ## 支持
 
-- [公众号](triones-weixin-offiaccount)
+- [公众号](weixin-pkg/weixin-offiaccount)
 
-- [小程序](triones-weixin-miniprogram/readme.md)
+- [小程序](weixin-pkg/weixin-miniprogram/readme.md)
 
-- [网页](triones-weixin-web)
+- [网页](weixin-pkg/weixin-web)
 
-- [APP](triones-weixin-app)
+- [APP](weixin-pkg/weixin-app)
 
-- [开放平台](triones-weixin-oplatform)
+- [开放平台](weixin-pkg/weixin-oplatform)
 
 ## 使用
 
@@ -25,7 +25,7 @@
     <dependencies>
         <dependency>
             <groupId>com.trionesdev.weixin</groupId>
-            <artifactId>triones-weixin-dependencies</artifactId>
+            <artifactId>weixin-dependencies</artifactId>
             <version>版本号</version>
             <type>pom</type>
             <scope>import</scope>
